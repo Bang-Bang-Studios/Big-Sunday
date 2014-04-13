@@ -834,7 +834,7 @@
             </Image.RenderTransform>
         </Image>
         <Rectangle Height="75" Name="ActivePlayer" Stroke="Gray" Width="75" Margin="681,75,684,730" Grid.Row="1" />
-        <TextBlock Height="50"  Margin="511,0,497,70" Name="winnerAnnoucement" Text="" FontWeight="Bold" FontSize="24" FontFamily="Celtic Garamond the 2nd" TextAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock Height="50"  Margin="470,0,471,70" Name="winnerAnnoucement" Text="" FontWeight="Bold" FontSize="24" FontFamily="Celtic Garamond the 2nd" TextAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Width="560" />
         <Button Content="Pause" BorderThickness="0" BorderBrush="{x:Null}" FontFamily="Celtic Garamond the 2nd" FontSize="36" FontWeight="Bold" Height="79" Margin="0,32,85,0" Name="ExitButton"  Width="178" Click="ExitButton_Click" MouseEnter="ExitButton_MouseEnter" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Panel.ZIndex="100" >
             <Button.Background>
                 <ImageBrush ImageSource="Images/PauseScroll.png"/>
@@ -842,7 +842,7 @@
         </Button>
         <TextBlock Height="56"  Margin="469,12,470,812" Name="ActiveTurnText" Text="Current Turn" FontFamily="Celtic Garamond the 2nd" FontSize="40" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" />
         <TextBlock Height="49"  Margin="95,0,0,70" Name="Player1NameText" Text="" FontFamily="Celtic Garamond the 2nd" FontSize="30" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Width="343" VerticalAlignment="Bottom" Grid.Row="1" />
-        <Image Margin="0,0,17,127" Name="IceGiant" Stretch="Fill"  Source="Images/Nub.png" Height="546" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
+        <Image Margin="0,0,17,127" Name="IceGiant" Stretch="Fill"  Source="Images/IceGiant.png" Height="546" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Grid.Row="1" MouseDown="IceGiant_MouseDown" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -912,7 +912,7 @@
             </Button.Background>
         </Button>
         <Image HorizontalAlignment="Left" Height="100" Margin="469,-52,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
-        <Image Margin="0,0,17,127" x:Name="IceGiant_Overlay" Stretch="Fill"  Source="Images/OverLay.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" Panel.ZIndex="1" >
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Overlay" Stretch="Fill"  Source="Images/OverLay.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" Panel.ZIndex="1" Visibility="Hidden" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -922,7 +922,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Margin="0,0,17,127" x:Name="IceGiant_Arm" Stretch="Fill"  Source="Images/Arm_New.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" FlowDirection="RightToLeft" >
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Arm" Stretch="Fill"  Source="Images/Arm_New.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" FlowDirection="RightToLeft" Visibility="Hidden" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -932,8 +932,9 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="SpeechBubble_Copy" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
-        <TextBlock Name="IceGiantSpeechBubble" HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="IceGiantSpeechBubble" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock Name="IceGiantText" HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Source="Images/Shield.png" Margin="10,10,0,0"/>
     </Grid>
     <Page.Background>
         <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />

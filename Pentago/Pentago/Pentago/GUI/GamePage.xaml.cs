@@ -87,12 +87,12 @@ namespace Pentago.GUI
             InitializeComponent();
             CreateChildrenList();
             quotes = new Quotes();
-            SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Gameplay.mp3", UriKind.Relative));
-            SoundManager.backgroundMusicPlayer.Play();
             gameOptions = options;
             switch (gameOptions._TypeOfGame)
             {
                 case GameOptions.TypeOfGame.QuickMatch:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Gameplay.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     player1 = options._Player1;
                     player2 = options._Player2;
                     gameBrain = new GameBrain(player1);
@@ -101,6 +101,8 @@ namespace Pentago.GUI
                     isNetwork = false;
                     break;
                 case GameOptions.TypeOfGame.Network:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Gameplay.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     player1 = options._Player1;
                     player2 = options._Player2;
                     gameBrain = new GameBrain(player1);
@@ -111,6 +113,8 @@ namespace Pentago.GUI
                     isNetwork = true;
                     break;
                 case GameOptions.TypeOfGame.AI:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Gameplay.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     player1 = options._Player1;
                     computerPlayer = options._ComputerPlayer;
                     gameBrain = new GameBrain(player1, computerPlayer);
@@ -170,31 +174,43 @@ namespace Pentago.GUI
             switch (levelPlay)
             {
                 case 0:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/10.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/mainBoard.png", UriKind.Absolute));
                     break;
                 case 1:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/3.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/BoatBoard.png", UriKind.Absolute));
                     break;
                 case 2:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/20.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Villiage Background_Village Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/CottageBoard.png", UriKind.Absolute));
                     break;
                 case 3:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/29.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/BoatBoard.png", UriKind.Absolute));
                     break;
                 case 4:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/11.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ice Palace Background_Final Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/castleBoard.png", UriKind.Absolute));
                     break;
                 default:
+                    SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/10.mp3", UriKind.Relative));
+                    SoundManager.backgroundMusicPlayer.Play();
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
                     GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/mainBoard.png", UriKind.Absolute));
@@ -2413,6 +2429,45 @@ namespace Pentago.GUI
             No_Button.Visibility = Visibility.Hidden;
             ConfirmLabel.Visibility = Visibility.Hidden;
             Exit_Button.Visibility = Visibility.Visible;
+        }
+
+        int GiantSpeechCounter = 1;
+
+        private void IceGiant_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            IceGiantSpeechBubble.Visibility = Visibility.Visible;
+            IceGiantText.Visibility = Visibility.Visible;
+                if (SpeechCounter == 9)
+            {
+                SpeechCounter = 1;
+            }
+            IceGiantText.Text = quotes.IceGiant;
+            //BubbleText.Text = VikingSpeechChanger(SpeechCounter);
+            SpeechCounter++;
+
+            Storyboard storyboard = new Storyboard();
+            TimeSpan duration = new TimeSpan(0, 0, 8);
+
+            DoubleAnimation fade = new DoubleAnimation();
+
+            fade.From = 1.0;
+            fade.To = 0.0;
+            fade.Duration = new Duration(duration);
+
+            DoubleAnimation fade2 = new DoubleAnimation();
+
+            fade2.From = 1.0;
+            fade2.To = 0.0;
+            fade2.Duration = new Duration(duration);
+
+            Storyboard.SetTargetName(fade, "IceGiantSpeechBubble");
+            Storyboard.SetTargetProperty(fade, new PropertyPath(Control.OpacityProperty));
+            storyboard.Children.Add(fade);
+            Storyboard.SetTargetName(fade2, "IceGiantText");
+            Storyboard.SetTargetProperty(fade2, new PropertyPath(Control.OpacityProperty));
+            storyboard.Children.Add(fade2);
+
+            storyboard.Begin(this);
         }
     }
 }

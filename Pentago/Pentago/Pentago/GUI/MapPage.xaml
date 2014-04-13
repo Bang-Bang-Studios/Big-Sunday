@@ -50,5 +50,6 @@
         <Image x:Name="Cottages" Margin="667,0,0,629" Panel.ZIndex="-1" Source="Images/Cottages.png" Height="158" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Left" Width="233" MouseDown="Cottages_MouseDown" />
         <Image x:Name="Boat2" Margin="816,410,0,0" Panel.ZIndex="-1" Source="Images/Boat2.png" Grid.Row="1" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" MouseDown="Boat2_MouseDown" />
         <Image x:Name="Castle" Margin="1187,128,-37,0" Panel.ZIndex="-1" Source="Images/Castle.png" Grid.Row="1" HorizontalAlignment="Left" Width="290" Height="230" VerticalAlignment="Top" MouseDown="Castle_MouseDown" />
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Source="Images/Shield.png" Margin="10,10,0,0"/>
     </Grid>
 </Page>

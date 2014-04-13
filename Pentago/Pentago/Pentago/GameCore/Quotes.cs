@@ -126,7 +126,7 @@ namespace Pentago.GameCore
             ElderQuotes.Add("Diagonal moves can be very strong attacks but the viking was too obvious here and was blocked by the ice giant. No matter how that quadrant is rotated that move is blocked.");
             ElderQuotes.Add("A few moves later the ice giant has set up a sneaky attack but spins the battlefield too soon giving the viking a chance to defend the final attack.");
             ElderQuotes.Add("A few moves later the ice giant has set up a sneaky attack but spins the battlefield too soon giving the viking a chance to defend the final attack.");
-            ElderQuotes.Add("It looks like the ice giant has block another attack from the viking but he forgot about battlefield rotations! the viking can rotate the bottom right board to unblock a victorious attack.");
+            ElderQuotes.Add("It looks like the ice giant has blocked another attack from the viking but he forgot about battlefield rotations! the viking can rotate the bottom right board to unblock a victorious attack.");
             ElderQuotes.Add("Our viking friend has won! Remember to always look at the battlefield rotations or this might happen to you.");
         }
 

@@ -46,12 +46,12 @@
             </Image.RenderTransform>
         </Image>
         <TextBlock x:Name="HelpTextBlock" HorizontalAlignment="Left" Height="164" Margin="182,0,0,569" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="238" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="16"/>
-        <Button x:Name="HelpLeft"  HorizontalAlignment="Right" Margin="0,0,514,80" Width="148" Height="52" VerticalAlignment="Bottom" Click="HelpLeft_Click" Visibility="Hidden">
+        <Button x:Name="HelpLeft"  HorizontalAlignment="Right" Margin="0,0,514,80" Width="148" Height="52" VerticalAlignment="Bottom" Click="HelpLeft_Click" Visibility="Hidden" MouseEnter="HelpLeft_MouseEnter">
             <Button.Background>
                 <ImageBrush ImageSource="/Pentago;component/GUI/Images/flatArrow.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="HelpRight" Margin="0,0,279,78" RenderTransformOrigin="0.5,0.5" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="148" Click="HelpRight_Click">
+        <Button x:Name="HelpRight" Margin="0,0,279,78" RenderTransformOrigin="0.5,0.5" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="148" Click="HelpRight_Click" MouseEnter="HelpRight_MouseEnter">
             <Button.LayoutTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -65,6 +65,7 @@
             </Button.Background>
         </Button>
         <Button Height="48" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="ExitHelp" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Exit Help" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="1067,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223" BorderThickness="0" MouseEnter="ExitHelp_MouseEnter" Click="ExitHelp_Click" />
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Images/Shield.png" Margin="10,10,0,0"/>
 
     </Grid>
 </Page>

@@ -187,33 +187,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="PlayerProfile" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Player Profile" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="155,357,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="315" BorderThickness="0" MouseEnter="PlayerProfile_MouseEnter" Click="PlayerProfile_Click" >
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Window.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
-                                <DiscreteObjectKeyFrame KeyTime="0">
-                                    <DiscreteObjectKeyFrame.Value>
-                                        <Visibility>Hidden</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                </DiscreteObjectKeyFrame>
-                            </ObjectAnimationUsingKeyFrames>
-                            <DoubleAnimation BeginTime="0:0:2.2" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.1" SpeedRatio="0.2"/>
-                            <DoubleAnimation BeginTime="0:0:2.3" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.1" SpeedRatio="0.2"/>
-                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.4" Storyboard.TargetProperty="Visibility">
-                                <DiscreteObjectKeyFrame KeyTime="0">
-                                    <DiscreteObjectKeyFrame.Value>
-                                        <Visibility>Visible</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                </DiscreteObjectKeyFrame>
-                            </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="Highscores" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Highscores" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="128,418,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="Highscores_MouseEnter" Click="Highscores_Click" >
+        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="Highscores" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Highscores" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="137,364,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="Highscores_MouseEnter" Click="Highscores_Click" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Window.Loaded">
                     <BeginStoryboard>
@@ -239,7 +213,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="GameOptionsButton" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Game Options" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="145,482,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="GameOptionsButton_MouseEnter" Click="GameOptionsButton_Click" >
+        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="GameOptionsButton" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Game Options" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="145,418,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="GameOptionsButton_MouseEnter" Click="GameOptionsButton_Click" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Window.Loaded">
                     <BeginStoryboard>
@@ -265,7 +239,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="HelpButton" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "How to Play" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="137,543,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="GameOptionsButton_MouseEnter" Click="HelpButton_Click" >
+        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="HelpButton" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "How to Play" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="137,482,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" MouseEnter="GameOptionsButton_MouseEnter" Click="HelpButton_Click" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Window.Loaded">
                     <BeginStoryboard>
@@ -291,7 +265,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="Quit" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Quit" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="137,595,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" Click="Quit_Click" MouseEnter="Quit_MouseEnter" >
+        <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Name="Quit" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Quit" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="137,534,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="333" BorderThickness="0" Click="Quit_Click" MouseEnter="Quit_MouseEnter" >
             <Button.Triggers>
                 <EventTrigger RoutedEvent="Window.Loaded">
                     <BeginStoryboard>
@@ -346,7 +320,7 @@
         <Image Height="28" HorizontalAlignment="Left" Margin="568,199,0,0" Name="PlayerVsComputerOff" MouseDown="PlayerVsComputer_Click" Source="/Pentago;component/GUI/Images/GreyCrystal.png" Stretch="Fill" VerticalAlignment="Top" Visibility="Hidden" Width="27" Panel.ZIndex="0" />
         <Image Height="28" HorizontalAlignment="Left" Margin="568,284,0,0" MouseDown="Player1_Click" Name="Player1MoveFirstOff" Panel.ZIndex="0" Source="/Pentago;component/GUI/Images/GreyCrystal.png" Stretch="Fill" VerticalAlignment="Top" Width="27" Visibility="Hidden" />
         <Image Height="28" HorizontalAlignment="Left" Margin="568,320,0,0" MouseDown="Player2_Click" Name="Player2MoveFirstOff" Panel.ZIndex="0" Source="/Pentago;component/GUI/Images/GreyCrystal.png" Stretch="Fill" VerticalAlignment="Top" Width="27" Visibility="Hidden" />
-        <Image Margin="0,152,18,0" Name="image1" Stretch="Fill" Source="/Pentago;component/GUI/Images/TitleWork.png" HorizontalAlignment="Right" Width="314" Height="307" VerticalAlignment="Top" Panel.ZIndex="-15" />
+        <Image Margin="0,0,132,204" Name="image1" Stretch="Fill" Source="/Pentago;component/GUI/Images/Logo.png" HorizontalAlignment="Right" Width="314" Height="214" VerticalAlignment="Bottom" Panel.ZIndex="-15" />
         <DockPanel x:Name="StoryModePanel" HorizontalAlignment="Left" Height="675" Margin="519,50,0,0" VerticalAlignment="Top" Width="375" Panel.ZIndex="-15" Visibility="Hidden">
             <DockPanel.Background>
                 <ImageBrush ImageSource="Images/FinalScroll.png"/>
@@ -724,6 +698,7 @@
             </Button.Background>
         </Button>
         <TextBlock x:Name="DifficultyIndicator" HorizontalAlignment="Left" Height="33" Margin="619,559,0,0" TextWrapping="Wrap" Text="Medium" VerticalAlignment="Top" Width="157" FontFamily="Celtic Garamond the 2nd" FontSize="24" TextAlignment="Center" Visibility="Hidden"/>
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Images/Shield.png" Margin="10,10,0,0"/>
         <Grid.Background>
             <ImageBrush ImageSource="Images/Main Background.png" />
         </Grid.Background>

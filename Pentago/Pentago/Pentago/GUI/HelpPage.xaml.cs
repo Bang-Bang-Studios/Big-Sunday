@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Pentago.GameCore;
+using Pentago.GUI.Classes;
 
 namespace Pentago.GUI
 {
@@ -22,6 +23,8 @@ namespace Pentago.GUI
         public HelpPage()
         {
             InitializeComponent();
+            SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/14.mp3", UriKind.Relative));
+            SoundManager.backgroundMusicPlayer.Play();
             quotes = new Quotes();
             helpImageChange = 1;
             HelpTextBlock.Text = quotes.Elder;
@@ -44,6 +47,7 @@ namespace Pentago.GUI
 
         private void HelpRight_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.playSFX(SoundManager.SoundType.Click);
             helpImageChange++;
             HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
             HelpTextBlock.Text = quotes.Elder;
@@ -56,6 +60,7 @@ namespace Pentago.GUI
 
         private void HelpLeft_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.playSFX(SoundManager.SoundType.Click);
             helpImageChange--;
             HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
             HelpTextBlock.Text = quotes.Elder;            
@@ -70,13 +75,24 @@ namespace Pentago.GUI
         private void ExitHelp_Click(object sender, RoutedEventArgs e)
         {
             //this.Close();
+            SoundManager.playSFX(SoundManager.SoundType.Click);
             MenuPage menu = new MenuPage();
             NavigationService.Navigate(menu);
         }
 
         private void ExitHelp_MouseEnter(object sender, MouseEventArgs e)
         {
+            SoundManager.playSFX(SoundManager.SoundType.MouseOver);
+        }
 
+        private void HelpRight_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SoundManager.playSFX(SoundManager.SoundType.MouseOver);
+        }
+
+        private void HelpLeft_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SoundManager.playSFX(SoundManager.SoundType.MouseOver);
         }
     }
 }
