@@ -121,7 +121,6 @@ namespace Pentago.GUI
                     isNetwork = false;
                     break;
                 case GameOptions.TypeOfGame.Campaign:
-                    gameOptions._TypeOfGame = GameOptions.TypeOfGame.AI;
                     profileManager = ProfileManager.InstanceCreator();
                     SetUpCampaign(options._LevelPlay);
                     player1 = options._Player1;
@@ -173,27 +172,32 @@ namespace Pentago.GUI
                 case 0:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/mainBoard.png", UriKind.Absolute));
                     break;
                 case 1:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/BoatBoard.png", UriKind.Absolute));
                     break;
                 case 2:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Villiage Background_Village Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/CottageBoard.png", UriKind.Absolute));
                     break;
                 case 3:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/BoatBoard.png", UriKind.Absolute));
                     break;
                 case 4:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ice Palace Background_Final Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
-                    Board.Background = Brushes.Black;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/castleBoard.png", UriKind.Absolute));
                     break;
                 default:
                     background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
                     GameBackground.Background = background;
+                    GridBackground.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/mainBoard.png", UriKind.Absolute));
                     break;
             }
         }
@@ -484,11 +488,13 @@ namespace Pentago.GUI
             {
                 case 1:
                     winnerText = "Congratulations " + player1.Name + " you have won!";
+                    if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
+                        profileManager.IncrementCampaignLevel(player1.Name);
                     break;
                 case 2:
                     if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.QuickMatch)
                         winnerText = "Congratulations " + player2.Name + " you have won!";
-                    else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI)
+                    else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
                         winnerText = "The " + computerPlayer.Name + " has won.";
                     else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Network)
                         winnerText = player2.Name + " has defeated you.";
@@ -533,7 +539,7 @@ namespace Pentago.GUI
                 }
                     
             }
-            else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI)
+            else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
             {
                 if (player1.ActivePlayer)
                 {
@@ -569,7 +575,7 @@ namespace Pentago.GUI
                         else
                             element.Fill = Brushes.Transparent;
                     }
-                    else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI)
+                    else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
                     {
                         if (tempBoard[slot] == 1)
                             element.Fill = player1.Image;
@@ -606,7 +612,7 @@ namespace Pentago.GUI
                     else
                         rec.Fill = Brushes.Transparent;
                 }
-                else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI)
+                else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
                 {
                     if (tempBoard[i] == 1)
                         rec.Fill = player1.Image;
@@ -658,7 +664,7 @@ namespace Pentago.GUI
                 ShowActivePlayer();
 
             //if this is a human vs computer game
-            if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI)
+            if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
             {
                 if (!player1.ActivePlayer && winner == 0)
                     GetComputerMoveAsynchronously();
@@ -1940,23 +1946,21 @@ namespace Pentago.GUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Window mainWindow = new MainMenu();
-            //App.Current.MainWindow = mainWindow;
-            //mainWindow.Show();
-            //if (networkUtil != null)
-            //{
-            //    networkUtil.stop();
-            //}
-            //Message.IsOpen = false;
-            //this.Hide();
-
             if (networkUtil != null)
             {
                 networkUtil.stop();
             }
             Message.IsOpen = false;
-            MenuPage menu = new MenuPage();
-            NavigationService.Navigate(menu);
+            if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
+            {
+                MapPage map = new MapPage(gameOptions);
+                NavigationService.Navigate(map);
+            }
+            else
+            {
+                MenuPage menu = new MenuPage();
+                NavigationService.Navigate(menu);
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

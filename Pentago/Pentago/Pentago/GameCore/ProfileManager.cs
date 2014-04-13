@@ -13,7 +13,7 @@ namespace Pentago.GameCore
     {
         #region singleton design pattern
         private static List<Profile> _Profiles;
-        private string  pathToProfiles = "C:\\Users\\Public\\Documents\\Dragon Horde\\profiles.txt";
+        private string pathToProfiles = "C:\\Users\\Public\\Documents\\Dragon Horde\\profiles.txt";
         private string pathToDirectory = "C:\\Users\\Public\\Documents\\Dragon Horde";
 
         private ProfileManager()
@@ -75,7 +75,7 @@ namespace Pentago.GameCore
 
         public bool IsProfileValid(string newProfileName)
         {
-            foreach(Profile profile in _Profiles)
+            foreach (Profile profile in _Profiles)
             {
                 if (newProfileName == profile.ProfileName)
                     return false;
@@ -125,6 +125,43 @@ namespace Pentago.GameCore
             return null;
         }
 
+        public void IncrementCampaignLevel(string profileName)
+        {
+            Profile profile = SearchProfile(profileName);
+            int indexOfProfile = _Profiles.IndexOf(profile);
+            if (profile.CampaignProgress < 4)
+                profile.CampaignProgress++;
+            _Profiles[indexOfProfile] = profile;
+            SaveFile();
+        }
+
+        private void SaveFile()
+        {
+            string[] profileParser = new string[_Profiles.Count + 1];
+            string profileLineConvention;
+            for (int i = 0; i < _Profiles.Count; i++)
+            {
+                profileLineConvention = _Profiles[i].ProfileName + "[&]";
+                profileLineConvention += _Profiles[i].CampaignProgress + "[&]";
+                profileParser[i + 1] = profileLineConvention;
+            }
+
+            if (!System.IO.Directory.Exists(pathToDirectory))
+                System.IO.Directory.CreateDirectory(pathToDirectory);
+            try
+            {
+                System.IO.File.WriteAllLines(pathToProfiles, profileParser);
+                //Clear list
+                _Profiles.Clear();
+                //Load new list with new profiles
+                ParseProfile();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
         public class Profile
         {
             private string _profileName;
@@ -144,6 +181,7 @@ namespace Pentago.GameCore
 
             public int CampaignProgress
             {
+                set { this._profileCampaignProgress = value; }
                 get { return this._profileCampaignProgress; }
             }
 

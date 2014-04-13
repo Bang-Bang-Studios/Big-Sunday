@@ -676,7 +676,7 @@
             </Canvas>
         </Popup>
         <!--Background="#BFC49A6C"-->
-        <Image x:Name="GridBackground" Panel.ZIndex="-9999" Height="500" Width="500" Source="Images/boatBoard.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="469,190,471,190" Grid.Row="1"/>
+        <Image x:Name="GridBackground" Panel.ZIndex="-9999" Height="500" Width="500" Source="Images/mainBoard.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="469,190,471,190" Grid.Row="1"/>
         <UniformGrid Name="Board" MouseDown="Board_MouseDown" Height="500"  Width="500" Panel.ZIndex="-1"  MouseLeave="Board_MouseLeave" MouseMove="Board_MouseMove" Grid.Row="1">
             <UniformGrid.Resources>
                 <Style TargetType="{x:Type Rectangle}" >
