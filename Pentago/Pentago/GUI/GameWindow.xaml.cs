@@ -78,7 +78,9 @@ namespace Pentago
         Point iceDragon5Origin;
         Point iceDragon6Origin;
 
-        public SolidColorBrush gridOutline = new SolidColorBrush(Color.FromArgb(255, 56, 56, 56));
+        public SolidColorBrush gridOutline = new SolidColorBrush(Color.FromArgb(255, 00, 00, 00));
+
+        ProfileManager profileManager = null;
 
         public GameWindow(GameOptions options)
         {
@@ -118,6 +120,20 @@ namespace Pentago
                         GetComputerMoveAsynchronously();
                     isNetwork = false;
                     break;
+                case GameOptions.TypeOfGame.Campaign:
+                    gameOptions._TypeOfGame = GameOptions.TypeOfGame.AI;
+                    profileManager = ProfileManager.InstanceCreator();
+                    SetUpCampaign(options._LevelPlay);
+                    player1 = options._Player1;
+                    computerPlayer = options._ComputerPlayer;
+                    gameBrain = new GameBrain(player1, computerPlayer);
+                    Player1NameText.Text = player1.Name;
+                    Player2NameText.Text = computerPlayer.Name;
+                    if (!player1.ActivePlayer)
+                        GetComputerMoveAsynchronously();
+                    isNetwork = false;
+                    break;
+
                 default:
                     break;
             }
@@ -148,6 +164,39 @@ namespace Pentago
 
             InitializeDragonOrigins();
             MakeDragonsVisble();
+        }
+
+        private void SetUpCampaign(int levelPlay)
+        {
+            ImageBrush background = new ImageBrush();
+            switch (levelPlay)
+            {
+                case 0:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    break;
+                case 1:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    break;
+                case 2:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Villiage Background_Village Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    break;
+                case 3:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ship Background_Ship Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    break;
+                case 4:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Ice Palace Background_Final Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    Board.Background = Brushes.Black;
+                    break;
+                default:
+                    background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Main Background.png", UriKind.Absolute));
+                    GameBackground.Background = background;
+                    break;
+            }
         }
 
         private void InitializeDragonOrigins()

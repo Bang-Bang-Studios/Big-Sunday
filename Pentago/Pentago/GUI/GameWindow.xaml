@@ -37,7 +37,7 @@
 
 
     </Window.Resources>
-    <Grid>
+    <Grid Name="GameBackground">
         <Grid.Background>
             <ImageBrush />
         </Grid.Background>
@@ -204,10 +204,14 @@
                 <Label x:Name="ConfirmLabel" Content="Are you sure?" Canvas.Left="224" Canvas.Top="591" Foreground="#FF0A8CB2" FontFamily="Celtic Garamond the 2nd" FontSize="36" Width="290" Visibility="Hidden"/>
             </Canvas>
         </Popup>
-        <UniformGrid Name="Board" MouseDown="Board_MouseDown" Height="500" Width="500" Panel.ZIndex="-1" Background="#BFC49A6C" MouseLeave="Board_MouseLeave" MouseMove="Board_MouseMove" Grid.Row="1">
+        <!--Background="#BFC49A6C"-->
+        <Image x:Name="GridBackground" Panel.ZIndex="-9999" Height="500" Width="500" Source="Images/BoatBoard.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="469,190,471,190" Grid.Row="1"/>
+        <UniformGrid Name="Board" MouseDown="Board_MouseDown" Height="500"  Width="500" Panel.ZIndex="-1"  MouseLeave="Board_MouseLeave" MouseMove="Board_MouseMove" Grid.Row="1">
             <UniformGrid.Resources>
                 <Style TargetType="{x:Type Rectangle}" >
-                    <Setter Property="Stroke" Value="#383838" />
+                    <Setter Property="Stroke" Value="#000000" />
+                    <Setter Property="StrokeThickness" Value="2" />
+                    <Setter Property="Panel.ZIndex" Value="9999" />
                 </Style>
             </UniformGrid.Resources>
             <Rectangle>
@@ -385,7 +389,7 @@
                 <ImageBrush ImageSource="Images/Armless.png"/>
             </Button.Background>
         </Button>
-        <StackPanel Name="fireDragonsStackPanel" Margin="-90,180,1449,200" Grid.Row="1">
+        <StackPanel Name="fireDragonsStackPanel" Margin="-90,189,1449,191" Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Image}" >
                     <Setter Property="Margin" Value="0,0,0,0" />
@@ -405,7 +409,7 @@
             <Image Margin="-1,0"/>
             <Image Margin="-1,0"/>
         </StackPanel>
-        <StackPanel Name="iceDragonsStackPanel" Margin="1440,180,-90,200" Grid.Row="1">
+        <StackPanel Name="iceDragonsStackPanel" Margin="1440,189,-90,191" Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Image}" >
                     <Setter Property="Margin" Value="0,0,0,0" />

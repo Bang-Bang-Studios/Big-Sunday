@@ -41,6 +41,14 @@ namespace Pentago.GUI
             this._Player1 = player1;
             this._ComputerPlayer = computerPlayer;
         }
-         
+
+        public int _LevelPlay;
+        public GameOptions(TypeOfGame typeOfGame, Player player1, computerAI computerPlayer, int levelPlay)
+        {
+            this._TypeOfGame = typeOfGame;
+            this._Player1 = player1;
+            this._ComputerPlayer = computerPlayer;
+            this._LevelPlay = levelPlay;
+        }
     }
 }
