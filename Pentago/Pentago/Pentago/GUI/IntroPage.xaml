@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1440"
-	Title="IntroPage" KeyDown="Page_KeyDown">
+	Title="IntroPage" KeyDown="Page_KeyDown" MouseDown="Page_MouseDown">
 
     <Grid Background="Black">
         <!--<Image x:Name="logo" Margin="150,77" Stretch="Fill" Source="Images/StudioOutline.png" Visibility="Hidden"/>

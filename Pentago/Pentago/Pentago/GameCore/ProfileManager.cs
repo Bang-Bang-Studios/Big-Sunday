@@ -137,13 +137,13 @@ namespace Pentago.GameCore
 
         private void SaveFile()
         {
-            string[] profileParser = new string[_Profiles.Count + 1];
+            string[] profileParser = new string[_Profiles.Count];
             string profileLineConvention;
             for (int i = 0; i < _Profiles.Count; i++)
             {
                 profileLineConvention = _Profiles[i].ProfileName + "[&]";
                 profileLineConvention += _Profiles[i].CampaignProgress + "[&]";
-                profileParser[i + 1] = profileLineConvention;
+                profileParser[i] = profileLineConvention;
             }
 
             if (!System.IO.Directory.Exists(pathToDirectory))

@@ -22,6 +22,8 @@ namespace Pentago
 
     public delegate void playerRemovedHandler(object pt, EventArgs e);
 
+    public delegate void networkStartFailedHandler(object ex, EventArgs e);
+
     public class PentagoNetwork
     {
         public event peerDiscoveredHandler Discovered;
@@ -30,8 +32,9 @@ namespace Pentago
         public event peerDisconnectedHancler Disconnected;
         public event moveReceivedHandler MoveReceived;
         public event playerRemovedHandler PlayerRemoved;
+        public event networkStartFailedHandler NetworkFail;
 
-        enum SentDataType {move, privateChat, globalChat, idRequest, idResponse, connectRequest, ping, pingResponse}
+        enum SentDataType { move, privateChat, globalChat, idRequest, idResponse, connectRequest, ping, pingResponse }
 
         //const int PORT_NUMBER = 32458;
         const int PORT_NUMBER = 12345;
@@ -50,7 +53,7 @@ namespace Pentago
         public string clientName;
         public bool iAmPlayer1 = true;
 
-        public List<peerType> availablePeers {get; private set;}
+        public List<peerType> availablePeers { get; private set; }
 
         private DateTime lastPingTime;
         private DateTime nextPingTime;
@@ -92,7 +95,7 @@ namespace Pentago
 
                 peer.DiscoverLocalPeers(PORT_NUMBER);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Caught exception: " + ex.Data);
             }
@@ -131,7 +134,15 @@ namespace Pentago
                     if (p.lastPing < DateTime.Now.AddSeconds(-2))
                     {
                         availablePeers.Remove(p);
-                        PlayerRemoved(p, EventArgs.Empty);
+
+                        try
+                        {
+                            PlayerRemoved(p, EventArgs.Empty);
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
                     }
                 }
 
@@ -159,7 +170,7 @@ namespace Pentago
                             // NOTE: Disconnecting and Disconnected are not instant unless client is shutdown with disconnect()
                             Console.WriteLine(msg.SenderConnection.ToString() + " status changed. " + (NetConnectionStatus)msg.SenderConnection.Status);
 
-                            if(msg.SenderConnection.Status == NetConnectionStatus.Connected)
+                            if (msg.SenderConnection.Status == NetConnectionStatus.Connected)
                             {
                                 if (Connected != null)
                                 {
@@ -194,7 +205,7 @@ namespace Pentago
                             //resp.Write(peerName);
                             //resp.Write(GAME_NAME);
                             //peer.SendDiscoveryResponse(resp, msg.SenderEndPoint);
-                            
+
                             //System.Net.IPAddress myAddress;
                             //System.Net.IPAddress myAddressMask;
                             //myAddress = NetUtility.GetMyAddress(out myAddressMask);
@@ -368,11 +379,15 @@ namespace Pentago
                                     NetOutgoingMessage resp = peer.CreateMessage();
                                     resp.Write((short)SentDataType.pingResponse);
                                     peer.SendUnconnectedMessage(resp, msg.SenderEndPoint);
+                                    for (int i = 0; i < availablePeers.Count; i++)
+                                    {
+                                        availablePeers[i].lastPing = DateTime.Now;
+                                    }
                                 }
                             }
                             else if (type == (short)SentDataType.pingResponse)
                             {
-                                foreach(peerType p in availablePeers)
+                                foreach (peerType p in availablePeers)
                                 {
                                     if (p.address == msg.SenderEndPoint)
                                     {
@@ -437,7 +452,7 @@ namespace Pentago
         {
             Console.WriteLine("Sending getPeerId to " + recipient);
             NetOutgoingMessage message = peer.CreateMessage();
-            message.Write((short)SentDataType.idRequest);            
+            message.Write((short)SentDataType.idRequest);
             peer.SendUnconnectedMessage(message, recipient);
         }
 
@@ -469,7 +484,7 @@ namespace Pentago
             NetOutgoingMessage message = peer.CreateMessage();
             message.Write((short)SentDataType.globalChat);
             message.Write(chatMessage);
-            
+
         }
 
         public void SendMove(short quad, short position, bool isClockwise)
@@ -510,7 +525,7 @@ namespace Pentago
 
         public void DeclineConnection()
         {
-            
+
             pendingConnectRequester = null;
         }
     }

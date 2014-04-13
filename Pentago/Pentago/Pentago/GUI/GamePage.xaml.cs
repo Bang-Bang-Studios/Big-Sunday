@@ -110,6 +110,7 @@ namespace Pentago.GUI
                     Player2NameText.Text = player2.Name;
                     networkUtil = options._NetworkUtil;
                     networkUtil.MoveReceived += new moveReceivedHandler(NetworkMoveReceived);
+                    networkUtil.Disconnected += new peerDisconnectedHancler(PeerDisconnected);
                     isNetwork = true;
                     break;
                 case GameOptions.TypeOfGame.AI:
@@ -166,6 +167,16 @@ namespace Pentago.GUI
             this.Cursor = new Cursor(cur);
 
             InitializeDragonOrigins();
+        }
+
+        private void PeerDisconnected(object sender, EventArgs e)
+        {
+            this.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                networkUtil.stop();
+                MenuPage menu = new MenuPage();
+                NavigationService.Navigate(menu);
+            }));
         }
 
         private void SetUpCampaign(int levelPlay)
@@ -285,6 +296,7 @@ namespace Pentago.GUI
                     else
                         rec.Fill = player2.ImageHover;
                 }
+                RotateSword(e);
             }
         }
 
@@ -1986,10 +1998,10 @@ namespace Pentago.GUI
 
         private void Game_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!lockSword)
-            {
-                RotateSword(e);
-            }
+            //if (!lockSword)
+            //{
+            //    RotateSword(e);
+            //}
             //RotateClub(e);
 
             //Point mousePositionRelativeToWindow = e.GetPosition(this);
@@ -2468,6 +2480,14 @@ namespace Pentago.GUI
             storyboard.Children.Add(fade2);
 
             storyboard.Begin(this);
+        }
+
+        private void GameBackground_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource != Message)
+            {
+                Message.IsOpen = false;
+            }
         }
     }
 }

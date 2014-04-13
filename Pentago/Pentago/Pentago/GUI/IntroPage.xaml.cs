@@ -39,8 +39,8 @@ namespace Pentago.GUI
 
         private void GoToNext()
         {
-            MenuPage menu = new MenuPage();
-            NavigationService.Navigate(menu);
+            GameIntro gameIntro = new GameIntro();
+            NavigationService.Navigate(gameIntro);
         }
 
 
@@ -50,6 +50,11 @@ namespace Pentago.GUI
         }
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            GoToNext();
+        }
+
+        private void Page_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GoToNext();
         }

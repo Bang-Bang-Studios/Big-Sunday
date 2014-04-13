@@ -60,8 +60,6 @@ namespace Pentago.GUI
             unMuteSoundVol = SoundManager.sfxVolume / 16;
             currentMusicVol = SoundManager.musicVolume / 16;
             currentSoundVol = SoundManager.sfxVolume / 16;
-            SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Intro.mp3", UriKind.Relative));
-            SoundManager.backgroundMusicPlayer.Play();
 
             profileManager = ProfileManager.InstanceCreator();
 
@@ -492,12 +490,13 @@ namespace Pentago.GUI
                 ProfileList.Visibility = Visibility.Visible;
                 ContineAdventure.Visibility = Visibility.Visible;
                 LoadProfilesList();
-                try
-                {
-                    ProfileList.SelectedIndex = 0;
-                }
-                catch { }
             }
+            try
+            {
+                ProfileList.UnselectAll();
+                ProfileList.SelectedIndex = 0;
+            }
+            catch { }
         }
 
         private void LoadProfilesList()
@@ -548,6 +547,9 @@ namespace Pentago.GUI
             SoundManager.playSFX(SoundManager.SoundType.Click);
             ReHideMenues();
             OnlineMenuPanel.Visibility = Visibility.Visible;
+            NameBox.Clear();
+            NameBox.Focusable = true;
+            NameBox.Focus();
         }
 
         private void FindOpponent_Click(object sender, RoutedEventArgs e)
@@ -563,7 +565,7 @@ namespace Pentago.GUI
                 networkUtil.Discovered -= new peerDiscoveredHandler(PeerListChanged);
                 networkUtil.ConnectionRequest -= new peerConnectionRequestHandler(ConnectionRequest);
                 networkUtil.Connected -= new peerConnectedHandler(PeerConnected);
-                networkUtil.Disconnected -= new peerDisconnectedHancler(PeerDisconnected);
+                //networkUtil.Disconnected -= new peerDisconnectedHancler(PeerDisconnected);
                 networkUtil.PlayerRemoved -= new playerRemovedHandler(PeerListChanged);
                 networkUtil.stop();
                 networkUtil = new PentagoNetwork(NameBox.Text);
@@ -571,7 +573,7 @@ namespace Pentago.GUI
             networkUtil.Discovered += new peerDiscoveredHandler(PeerListChanged);
             networkUtil.ConnectionRequest += new peerConnectionRequestHandler(ConnectionRequest);
             networkUtil.Connected += new peerConnectedHandler(PeerConnected);
-            networkUtil.Disconnected += new peerDisconnectedHancler(PeerDisconnected);
+            //networkUtil.Disconnected += new peerDisconnectedHancler(PeerDisconnected);
             networkUtil.PlayerRemoved += new playerRemovedHandler(PeerListChanged);
             Searching_for_Opponents.Visibility = Visibility.Visible;
         }
@@ -581,15 +583,15 @@ namespace Pentago.GUI
             this.Dispatcher.BeginInvoke(new Action(delegate() { InitializeNetworkGame(); }), null);
         }
 
-        private void PeerDisconnected(object sender, EventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                networkUtil.stop();
-                MenuPage menu = new MenuPage();
-                NavigationService.Navigate(menu);
-            }));
-        }
+        //private void PeerDisconnected(object sender, EventArgs e)
+        //{
+        //    this.Dispatcher.BeginInvoke(new Action(delegate()
+        //    {
+        //        networkUtil.stop();
+        //        MenuPage menu = new MenuPage();
+        //        NavigationService.Navigate(menu);
+        //    }));
+        //}
 
         private void PeerListChanged(object msg, EventArgs e)
         {
@@ -710,13 +712,6 @@ namespace Pentago.GUI
             HighScorePanel.Visibility = Visibility.Visible;
         }
 
-        private void Menu_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.OriginalSource != OnlineMenuPanel)
-            {
-                OnlineMenuPanel.Visibility = Visibility.Hidden;
-            }
-        }
 
         public void MusicToggle_Click(object sender, RoutedEventArgs e)
         {
@@ -1778,6 +1773,14 @@ namespace Pentago.GUI
         private void NewProfileName_KeyDown(object sender, KeyEventArgs e)
         {
             SoundManager.playSFX(SoundManager.SoundType.KeyDown);
+        }
+
+        private void MenuPage1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource != OnlineMenuPanel)
+            {
+                OnlineMenuPanel.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

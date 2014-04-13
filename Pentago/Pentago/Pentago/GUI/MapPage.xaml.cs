@@ -30,6 +30,11 @@ namespace Pentago.GUI
         public int unMuteSoundVol = 6;
         public int currentSoundVol = 6;
 
+        private System.Windows.Point vikingArmPivot;
+        private System.Windows.Point iceGiantArmPivot;
+        private System.Windows.Point zero;
+        private System.Windows.Point topRight;
+
         private BitmapImage lockImage = new BitmapImage(new Uri("pack://application:,,,/GUI/images/lock.png", UriKind.Absolute));
         private string profileName;
         public MapPage(GameOptions options)
@@ -47,6 +52,29 @@ namespace Pentago.GUI
             currentSoundVol = SoundManager.sfxVolume / 16;
             SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/24.mp3", UriKind.Relative));
             SoundManager.backgroundMusicPlayer.Play();
+
+            vikingArmPivot = new Point(0, System.Windows.SystemParameters.PrimaryScreenHeight - 52);
+            zero = new Point(0, 0);
+            topRight = new Point(System.Windows.SystemParameters.PrimaryScreenWidth, 0);
+            iceGiantArmPivot = new Point(System.Windows.SystemParameters.PrimaryScreenWidth - 261, System.Windows.SystemParameters.PrimaryScreenHeight - 600);
+        }
+
+        private void RotateSword(MouseEventArgs e)
+        {
+            Point mousePositionRelativeToWindow = e.GetPosition(this);
+            //Console.WriteLine("Window: " + mousePositionRelativeToWindow.ToString());
+
+
+
+            double a = Math.Sqrt((vikingArmPivot.X * vikingArmPivot.X) + (vikingArmPivot.Y * vikingArmPivot.Y));
+            double b = Math.Sqrt(((vikingArmPivot.X - mousePositionRelativeToWindow.X) * (vikingArmPivot.X - mousePositionRelativeToWindow.X)) +
+                ((vikingArmPivot.Y - mousePositionRelativeToWindow.Y) * (vikingArmPivot.Y - mousePositionRelativeToWindow.Y)));
+            double c = Math.Sqrt((mousePositionRelativeToWindow.X * mousePositionRelativeToWindow.X) + (mousePositionRelativeToWindow.Y * mousePositionRelativeToWindow.Y));
+
+            double angle = Math.Acos((a * a + b * b - c * c) / (2 * a * b)) * (180 / Math.PI);
+
+            VikingImage_Sword.RenderTransform = new RotateTransform(angle - 55, 40, 121);
+            //.RenderTransform = new RotateTransform(angle - 66, 40, 121);
         }
 
         private void SetUpCampaignProgress(string profileName)
@@ -112,6 +140,7 @@ namespace Pentago.GUI
         {
             if (Home.Source != lockImage)
             {
+                SoundManager.playSFX(SoundManager.SoundType.Click);
                 computerAI.Difficulty difficulty = computerAI.Difficulty.Beginner;
                 InitializeCampaignGame(difficulty, 0);
             }
@@ -151,6 +180,7 @@ namespace Pentago.GUI
         {
             if (Boat1.Source != lockImage)
             {
+                SoundManager.playSFX(SoundManager.SoundType.Click);
                 computerAI.Difficulty difficulty = computerAI.Difficulty.Easy;
                 InitializeCampaignGame(difficulty, 1);
             }
@@ -160,6 +190,7 @@ namespace Pentago.GUI
         {
             if (Cottages.Source != lockImage)
             {
+                SoundManager.playSFX(SoundManager.SoundType.Click);
                 computerAI.Difficulty difficulty = computerAI.Difficulty.Medium;
                 InitializeCampaignGame(difficulty, 2);
             }
@@ -169,6 +200,7 @@ namespace Pentago.GUI
         {
             if (Boat2.Source != lockImage)
             {
+                SoundManager.playSFX(SoundManager.SoundType.Click);
                 computerAI.Difficulty difficulty = computerAI.Difficulty.Medium;
                 InitializeCampaignGame(difficulty, 3);
             }
@@ -178,9 +210,15 @@ namespace Pentago.GUI
         {
             if (Castle.Source != lockImage)
             {
+                SoundManager.playSFX(SoundManager.SoundType.Click);
                 computerAI.Difficulty difficulty = computerAI.Difficulty.Hard;
                 InitializeCampaignGame(difficulty, 4);
             }
+        }
+
+        private void Page_MouseMove(object sender, MouseEventArgs e)
+        {
+            RotateSword(e);
         }
     }
 }

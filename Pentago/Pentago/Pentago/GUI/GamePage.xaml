@@ -294,8 +294,8 @@
             <Rectangle >
             </Rectangle>
         </UniformGrid>
-        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
-        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
+        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -305,7 +305,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -315,7 +315,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -325,7 +325,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -335,7 +335,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="1"/>
@@ -345,7 +345,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
+        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -355,7 +355,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="1"/>
@@ -470,7 +470,7 @@
         <TextBlock HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
     </Grid>
     <Page.Background>
-        <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />
+        <ImageBrush ImageSource="Images/Main Background.png" />
     </Page.Background>-->
 
     <Page.Resources>
@@ -508,7 +508,7 @@
 
 
     </Page.Resources>
-    <Grid Name="GameBackground">
+    <Grid Name="GameBackground" MouseDown="GameBackground_MouseDown">
         <Grid.Background>
             <ImageBrush />
         </Grid.Background>
@@ -762,8 +762,8 @@
             <Rectangle >
             </Rectangle>
         </UniformGrid>
-        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
-        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
+        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -773,7 +773,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -783,7 +783,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -793,7 +793,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -803,7 +803,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="1"/>
@@ -813,7 +813,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
+        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -823,7 +823,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
+        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="1"/>
@@ -932,11 +932,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="IceGiantSpeechBubble" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
-        <TextBlock Name="IceGiantText" HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Right" Margin="0,0,241,580" x:Name="IceGiantSpeechBubble" Stretch="Fill" Width="224"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="213" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock Name="IceGiantText" HorizontalAlignment="Right" Height="87" Margin="0,0,273,662" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="155" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="16" Visibility="Hidden" TextAlignment="Center"/>
         <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Source="Images/Shield.png" Margin="10,10,0,0"/>
     </Grid>
     <Page.Background>
-        <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />
+        <ImageBrush ImageSource="Images/Main Background.png" />
     </Page.Background>
 </Page>

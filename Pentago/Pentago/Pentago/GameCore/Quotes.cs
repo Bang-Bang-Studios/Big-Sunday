@@ -39,7 +39,7 @@ namespace Pentago.GameCore
             get
             {
                 Random rand = new Random();
-                return VikingQuotes[rand.Next(VikingQuotes.Count - 1)];
+                return VikingQuotes[rand.Next(VikingQuotes.Count)];
             }
         }
 
@@ -57,7 +57,7 @@ namespace Pentago.GameCore
             get
             {
                 Random rand = new Random();
-                return VikingNames[rand.Next(VikingNames.Count() - 1)];
+                return VikingNames[rand.Next(VikingNames.Count())];
             }
         }
 
@@ -74,7 +74,7 @@ namespace Pentago.GameCore
             get
             {
                 Random rand = new Random();
-                return IceGiantQuotes[rand.Next(IceGiantQuotes.Count - 1)];
+                return IceGiantQuotes[rand.Next(IceGiantQuotes.Count)];
             }
         }
 
