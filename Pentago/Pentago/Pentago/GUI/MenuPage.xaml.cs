@@ -1392,7 +1392,14 @@ namespace Pentago.GUI
 
         private void AvailableLobbies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (AvailableLobbies.Items.Count != 0)
+            {
+                ChallengeOpponent.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ChallengeOpponent.Visibility = Visibility.Hidden;
+            }
         }
 
         private void SaveProfile_Click(object sender, RoutedEventArgs e)
@@ -1419,9 +1426,9 @@ namespace Pentago.GUI
                     foreach (Bitmap image in images)
                         graphics.DrawImage(image, 0, 0);
 
-                    if (!Directory.Exists(@"GUI\Images\CustomVikings"))
-                        Directory.CreateDirectory(@"GUI\Images\CustomVikings");
-                    target.Save(@"GUI\Images\CustomVikings\" + newProfileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                    if (!Directory.Exists("C:\\Users\\Public\\Documents\\Dragon Horde"))
+                        Directory.CreateDirectory("C:\\Users\\Public\\Documents\\Dragon Horde");
+                    target.Save("C:\\Users\\Public\\Documents\\Dragon Horde\\" + newProfileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
 
                     //append to file 
                     profileManager.CreateNewProfile(newProfileName);

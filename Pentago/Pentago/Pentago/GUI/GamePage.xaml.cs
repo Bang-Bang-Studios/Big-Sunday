@@ -144,9 +144,9 @@ namespace Pentago.GUI
                     break;
             }
             ShowActivePlayer();
-            if(File.Exists(@"GUI\Images\CustomVikings\" + player1.Name + ".png"))
+            if (File.Exists("C:\\Users\\Public\\Documents\\Dragon Horde\\" + player1.Name + ".png"))
             {
-                System.Drawing.Image img = System.Drawing.Image.FromFile(@"GUI\Images\CustomVikings\" + player1.Name + ".png");
+                System.Drawing.Image img = System.Drawing.Image.FromFile("C:\\Users\\Public\\Documents\\Dragon Horde\\" + player1.Name + ".png");
                 System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(img);
                 BitmapSource bmpSrc = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), 
                     IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());

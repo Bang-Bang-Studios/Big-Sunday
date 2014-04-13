@@ -128,7 +128,7 @@ namespace Pentago.GameCore
         public void IncrementCampaignLevel(string profileName, int levelPlay)
         {
             Profile profile = SearchProfile(profileName);
-            if (profile.CampaignProgress < levelPlay)
+            if (profile.CampaignProgress <= levelPlay)
             {
                 int indexOfProfile = _Profiles.IndexOf(profile);
                 if (profile.CampaignProgress < 4)

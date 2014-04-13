@@ -35,6 +35,8 @@ namespace Pentago.GUI
         private System.Windows.Point zero;
         private System.Windows.Point topRight;
 
+        private Pentago.GameCore.ProfileManager.Profile playerProfile;
+
         private BitmapImage lockImage = new BitmapImage(new Uri("pack://application:,,,/GUI/images/lock.png", UriKind.Absolute));
         private string profileName;
         public MapPage(GameOptions options)
@@ -79,7 +81,7 @@ namespace Pentago.GUI
 
         private void SetUpCampaignProgress(string profileName)
         {
-            Pentago.GameCore.ProfileManager.Profile playerProfile = profileManager.SearchProfile(profileName);
+            playerProfile = profileManager.SearchProfile(profileName);
             int campaignLevel = playerProfile.CampaignProgress;
             switch (campaignLevel)
             {
@@ -114,9 +116,9 @@ namespace Pentago.GUI
 
         private void InitializeProfileOnGUI(Player profilePlayer)
         {
-            if (File.Exists(@"GUI\Images\CustomVikings\" + profilePlayer.Name + ".png"))
+            if (File.Exists("C:\\Users\\Public\\Documents\\Dragon Horde\\" + profilePlayer.Name + ".png"))
             {
-                System.Drawing.Image img = System.Drawing.Image.FromFile(@"GUI\Images\CustomVikings\" + profilePlayer.Name + ".png");
+                System.Drawing.Image img = System.Drawing.Image.FromFile("C:\\Users\\Public\\Documents\\Dragon Horde\\" + profilePlayer.Name + ".png");
                 System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(img);
                 BitmapSource bmpSrc = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(),
                     IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
@@ -219,6 +221,68 @@ namespace Pentago.GUI
         private void Page_MouseMove(object sender, MouseEventArgs e)
         {
             RotateSword(e);
+        }
+
+        private void Home_MouseEnter(object sender, MouseEventArgs e)
+        {
+                StoryBlock.Text = "The frost giants have invaded Fjordland!";
+        }
+
+        private void Boat1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (playerProfile.CampaignProgress >=1)
+            {
+                StoryBlock.Text = "Fight the frost giants back!";
+            }
+        }
+
+        private void Cottages_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (playerProfile.CampaignProgress >= 2)
+            {
+                StoryBlock.Text = "Save the sheep!";
+            }
+        }
+
+        private void Boat2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (playerProfile.CampaignProgress >= 3)
+            {
+                StoryBlock.Text = "The ice dragons are being used against their will, fight to the frozen castle!";
+            }
+        }
+
+        private void Castle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (playerProfile.CampaignProgress >= 4)
+            {
+                StoryBlock.Text = "Free the ice dragons!";
+            }
+        }
+
+        private void Home_MouseLeave(object sender, MouseEventArgs e)
+        {
+            StoryBlock.Text = "";
+        }
+
+        private void Boat1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            StoryBlock.Text = "";
+        }
+
+        private void Cottages_MouseLeave(object sender, MouseEventArgs e)
+        {
+            StoryBlock.Text = "";
+        }
+
+        private void Boat2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            StoryBlock.Text = "";
+        }
+
+        private void Castle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            StoryBlock.Text = "";
         }
     }
 }

@@ -45,12 +45,13 @@
 
         <Image x:Name="VikingImage" Height="293" Margin="0,0,0,-120"  Width="199" Panel.ZIndex="-1" Grid.Row="1" Source="Images/Armless.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Stretch="Fill"/>
         <Image x:Name="Trail" Margin="287,184,0,0" Panel.ZIndex="-1" Grid.Row="1" Source="Images/trail.png" Height="472" VerticalAlignment="Top" HorizontalAlignment="Left" Width="989" />
-        <Image x:Name="Home" Margin="108,538,0,0" Panel.ZIndex="-1" Grid.Row="1" Source="Images/Home.png" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" MouseDown="Home_MouseDown" />
-        <Image x:Name="Boat1" Margin="177,128,0,0" Panel.ZIndex="-1" Grid.Row="1" Source="Images/Boat1.png" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="213" MouseDown="Boat1_MouseDown" />
-        <Image x:Name="Cottages" Margin="667,0,0,629" Panel.ZIndex="-1" Source="Images/Cottages.png" Height="158" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Left" Width="233" MouseDown="Cottages_MouseDown" />
-        <Image x:Name="Boat2" Margin="816,410,0,0" Panel.ZIndex="-1" Source="Images/Boat2.png" Grid.Row="1" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" MouseDown="Boat2_MouseDown" />
-        <Image x:Name="Castle" Margin="1187,128,-37,0" Panel.ZIndex="-1" Source="Images/Castle.png" Grid.Row="1" HorizontalAlignment="Left" Width="290" Height="230" VerticalAlignment="Top" MouseDown="Castle_MouseDown" />
+        <Image x:Name="Home" Margin="108,538,0,0" Panel.ZIndex="-1" Grid.Row="1" Source="Images/Home.png" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" MouseDown="Home_MouseDown" MouseEnter="Home_MouseEnter" MouseLeave="Home_MouseLeave" />
+        <Image x:Name="Boat1" Margin="177,128,0,0" Panel.ZIndex="-1" Grid.Row="1" Source="Images/Boat1.png" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="213" MouseDown="Boat1_MouseDown" MouseEnter="Boat1_MouseEnter" MouseLeave="Boat1_MouseLeave" />
+        <Image x:Name="Cottages" Margin="667,48,0,0" Panel.ZIndex="-1" Source="Images/Cottages.png" Grid.Row="1" HorizontalAlignment="Left" Width="233" MouseDown="Cottages_MouseDown" MouseEnter="Cottages_MouseEnter" MouseLeave="Cottages_MouseLeave" Height="158" VerticalAlignment="Top" />
+        <Image x:Name="Boat2" Margin="816,410,0,0" Panel.ZIndex="-1" Source="Images/Boat2.png" Grid.Row="1" Height="158" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" MouseDown="Boat2_MouseDown" MouseEnter="Boat2_MouseEnter" MouseLeave="Boat2_MouseLeave" />
+        <Image x:Name="Castle" Margin="1187,128,-37,0" Panel.ZIndex="-1" Source="Images/Castle.png" Grid.Row="1" HorizontalAlignment="Left" Width="290" Height="230" VerticalAlignment="Top" MouseDown="Castle_MouseDown" MouseEnter="Castle_MouseEnter" MouseLeave="Castle_MouseLeave" />
         <Image x:Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Grid.RowSpan="2" Source="Images/Shield.png" Margin="10,10,0,0"/>
         <Image x:Name="VikingImage_Sword" Height="293" Margin="0,0,0,-120"  Width="199" Panel.ZIndex="-1" Grid.Row="1" Source="Images/PointSword.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Stretch="Fill"/>
+        <TextBlock x:Name="StoryBlock" HorizontalAlignment="Left" Height="72" Margin="445,683,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="693" FontFamily="/Dragon Horde;component/#Celtic Garamond the 2nd" FontSize="24"/>
     </Grid>
 </Page>
