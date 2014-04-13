@@ -1,0 +1,5 @@
+﻿<NavigationWindow x:Class="Pentago.GUI.NavWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NavWindow" Height="900" Width="1440" ResizeMode="NoResize" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" ShowsNavigationUI="False" Source="IntroPage.xaml">
+</NavigationWindow>

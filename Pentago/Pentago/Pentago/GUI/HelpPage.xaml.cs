@@ -17,14 +17,13 @@ namespace Pentago.GUI
     /// <summary>
     /// Interaction logic for Help.xaml
     /// </summary>
-    public partial class Help : Window
+    public partial class HelpPage : Page
     {
-        public Help()
+        public HelpPage()
         {
             InitializeComponent();
             quotes = new Quotes();
             helpImageChange = 1;
-            HelpTextBlock.Text = quotes.Elder;
         }
 
         Quotes quotes;
@@ -37,15 +36,14 @@ namespace Pentago.GUI
             }
             set
             {
-                helpImagecounter = value; quotes.speechCounter = value - 1;
+                helpImagecounter = value; quotes.speechCounter = value;
             }
         }
 
         private void HelpRight_Click(object sender, RoutedEventArgs e)
         {
             helpImageChange++;
-            HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap( new System.Drawing.Bitmap("GUI/Images/Help"+helpImageChange+".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
-            HelpTextBlock.Text = quotes.Elder;            
+            HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
             if (helpImageChange > 8)
             {
                 HelpRight.Visibility = Visibility.Hidden;
@@ -57,18 +55,19 @@ namespace Pentago.GUI
         {
             helpImageChange--;
             HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
-            HelpTextBlock.Text = quotes.Elder;
             if (helpImageChange < 2)
             {
                 HelpLeft.Visibility = Visibility.Hidden;
             }
             HelpRight.Visibility = Visibility.Visible;
-             //HelpImage.Source = "Help" + helpImageChange + ".png";
+            //HelpImage.Source = "Help" + helpImageChange + ".png";
         }
 
         private void ExitHelp_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
+            MenuPage menu = new MenuPage();
+            NavigationService.Navigate(menu);
         }
 
         private void ExitHelp_MouseEnter(object sender, MouseEventArgs e)

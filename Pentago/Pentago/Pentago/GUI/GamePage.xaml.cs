@@ -25,9 +25,9 @@ using System.Windows.Media.Animation;
 using System.IO;
 using System.Windows.Interop;
 
-namespace Pentago
+namespace Pentago.GUI
 {
-    public partial class GameWindow : Window
+    public partial class GamePage : Page
     {
         private GameBrain gameBrain = null;
 
@@ -82,7 +82,7 @@ namespace Pentago
 
         ProfileManager profileManager = null;
 
-        public GameWindow(GameOptions options)
+        public GamePage(GameOptions options)
         {
             InitializeComponent();
             CreateChildrenList();
@@ -1797,13 +1797,13 @@ namespace Pentago
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Window mainWindow = new MainMenu();
-            App.Current.MainWindow = mainWindow;
-            mainWindow.Show();
-            if (networkUtil != null)
-            {
-                networkUtil.stop();
-            }
+            //Window mainWindow = new MainMenu();
+            //App.Current.MainWindow = mainWindow;
+            //mainWindow.Show();
+            //if (networkUtil != null)
+            //{
+            //    networkUtil.stop();
+            //}
             //this.Hide();
         }
 
@@ -1964,15 +1964,23 @@ namespace Pentago
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window mainWindow = new MainMenu();
-            App.Current.MainWindow = mainWindow;
-            mainWindow.Show();
+            //Window mainWindow = new MainMenu();
+            //App.Current.MainWindow = mainWindow;
+            //mainWindow.Show();
+            //if (networkUtil != null)
+            //{
+            //    networkUtil.stop();
+            //}
+            //Message.IsOpen = false;
+            //this.Hide();
+
             if (networkUtil != null)
             {
                 networkUtil.stop();
             }
             Message.IsOpen = false;
-            this.Hide();
+            MenuPage menu = new MenuPage();
+            NavigationService.Navigate(menu);
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

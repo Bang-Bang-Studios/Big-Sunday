@@ -1,0 +1,937 @@
+﻿<Page x:Class="Pentago.GUI.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1440"
+	Title="GamePage">
+
+    <!--<Page.Resources>
+
+        --><!--<Storyboard x:Key="FadeOut" Completed="VikingButton_Mousedown">
+            <DoubleAnimation From="1" To="0" Storyboard.TargetName ="SpeechBubble" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="0:0:1"/>
+        </Storyboard>--><!--
+
+        <Style x:Key="ScrollFade" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Hidden</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2" SpeedRatio="0.25"/>
+                            <DoubleAnimation BeginTime="0:0:1.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" SpeedRatio="0.25"/>
+                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:1.5" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush />
+        </Grid.Background>
+        <Grid.Resources>
+            <DropShadowEffect x:Key="ShadowEffect" Color="#CEF6F5" Direction="325" Opacity="0.5" ShadowDepth="5" />
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="TextElement.Foreground" Value="#A9F5F2"/>
+                        <Setter Property="Effect" Value="{StaticResource ShadowEffect}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="44*"/>
+        </Grid.RowDefinitions>
+        <Popup x:Name="Message" Height="900" Width="650" Placement="Center" AllowsTransparency="True" PopupAnimation="Slide">
+            <Canvas HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="650">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/RosettaStoneCartoony.png"/>
+                </Canvas.Background>
+                <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="MusicToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Music" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" BorderThickness="0" IsTabStop="False" Click="MusicToggle_Click" Canvas.Left="293" Canvas.Top="128" Foreground="#FFA48F0C" />
+                <Button Height="24" HorizontalAlignment="Left"  x:Name="MusicOff1" Panel.ZIndex="0"   VerticalAlignment="Top" Visibility="Hidden" Width="24" Click="MusicOff1_Click" Canvas.Left="248" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="MusicOff2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="27" Click="MusicOff2_Click" Canvas.Left="277" Canvas.Top="189" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="MusicOff4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="33" Click="MusicOff4_Click" Canvas.Left="344" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="MusicOff3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="30" Click="MusicOff3_Click" Canvas.Left="309" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="MusicOff5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="36" Click="MusicOff5_Click" Canvas.Left="382" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="MusicOff6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="39" Click="MusicOff6_Click" Canvas.Left="424" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="24" HorizontalAlignment="Left" x:Name="MusicOn1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Visible" Width="24" Click="MusicOn1_Click" Canvas.Left="248" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="MusicOn3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="30" Click="MusicOn3_Click" Canvas.Left="309" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="MusicOn4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="33" Click="MusicOn4_Click" Canvas.Left="344" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="MusicOn5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="36" Click="MusicOn5_Click" Canvas.Left="382" Canvas.Top="186" 
+                        >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="MusicOn6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="39" Click="MusicOn6_Click" Canvas.Left="424" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="MusicOn2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="27" Click="MusicOn2_Click" Canvas.Left="277" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="44" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="SoundToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Sound" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" BorderThickness="0"  IsTabStop="False" Click="SoundToggle_Click" Canvas.Left="293" Canvas.Top="269" Foreground="#FFA48F0C" />
+                <Button Height="24" HorizontalAlignment="Left" x:Name="SoundOn1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Visible" Width="24" Click="SoundOn1_Click" Canvas.Left="248" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="SoundOn3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="30" Click="SoundOn3_Click" Canvas.Left="309" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="SoundOn4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="33" Click="SoundOn4_Click" Canvas.Left="344" Canvas.Top="326" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="SoundOn5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="36" Click="SoundOn5_Click" Canvas.Left="382" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="SoundOn6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="39" Click="SoundOn6_Click" Canvas.Left="424" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="SoundOn2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="27" Click="SoundOn2_Click" Canvas.Left="277" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="24" HorizontalAlignment="Left" x:Name="SoundOff1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Hidden" Width="24" Click="SoundOff1_Click" Canvas.Left="248" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="SoundOff3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="30" Click="SoundOff3_Click" Canvas.Left="309" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="SoundOff4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="33" Click="SoundOff4_Click" Canvas.Left="344" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="SoundOff5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="36" Click="SoundOff5_Click" Canvas.Left="382" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="SoundOff6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="39" Click="SoundOff6_Click" Canvas.Left="424" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="SoundOff2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="27" Click="SoundOff2_Click" Canvas.Left="277" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="Yes_Button" Content="Yes" Canvas.Left="382" Canvas.Top="647" Width="87" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Button_Click" Visibility="Hidden"/>
+                <Button x:Name="Resume_Button" Content="Resume" Canvas.Left="292" Canvas.Top="554" Width="147" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Cancel_Button_Click"/>
+                <Image x:Name="MusicMuteToggle" Height="42" Canvas.Left="434" Canvas.Top="133" Width="42" Source="Images/Unmute.png" MouseDown="MusicMuteToggle_Click"/>
+                <Image x:Name="SoundMuteToggle" Height="42" Canvas.Left="434" Canvas.Top="269" Width="42" Source="Images/Unmute.png" MouseDown="SoudMuteToggle_Click"/>
+                <Button x:Name="Exit_Button" Content="Exit" Canvas.Left="292" Canvas.Top="600" Width="147" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Exit_Button_Click"/>
+                <Button x:Name="No_Button" Content="No" Canvas.Left="277" Canvas.Top="647" Width="87" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="No_Button_Click" Visibility="Hidden"/>
+                <Label x:Name="ConfirmLabel" Content="Are you sure?" Canvas.Left="224" Canvas.Top="591" Foreground="#FF0A8CB2" FontFamily="Celtic Garamond the 2nd" FontSize="36" Width="290" Visibility="Hidden"/>
+            </Canvas>
+        </Popup>
+        <UniformGrid Name="Board" MouseDown="Board_MouseDown" Panel.ZIndex="9999" Background="{x:Null}" MouseLeave="Board_MouseLeave" MouseMove="Board_MouseMove" Grid.Row="1" Margin="470,190,470,0" Height="500" Width="500" VerticalAlignment="Top">
+            <UniformGrid.Resources>
+                <Style TargetType="{x:Type Rectangle}" >
+                    <Setter Property="Stroke" Value="#383838" />
+                </Style>
+            </UniformGrid.Resources>
+            <Rectangle>
+
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle>
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle>
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+        </UniformGrid>
+        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
+        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="270"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Rectangle Height="75" Name="ActivePlayer" Stroke="Gray" Width="75" Margin="681,75,684,0" Grid.Row="1" VerticalAlignment="Top" />
+        <TextBlock Height="50"  Margin="511,0,497,70" Name="winnerAnnoucement" Text="" FontWeight="Bold" FontSize="24" FontFamily="Celtic Garamond the 2nd" TextAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Button Content="Pause" BorderThickness="0" BorderBrush="{x:Null}" FontFamily="Celtic Garamond the 2nd" FontSize="36" FontWeight="Bold" Height="79" Margin="0,32,85,0" Name="ExitButton"  Width="178" Click="ExitButton_Click" MouseEnter="ExitButton_MouseEnter" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Panel.ZIndex="100" >
+            <Button.Background>
+                <ImageBrush ImageSource="Images/PauseScroll.png"/>
+            </Button.Background>
+        </Button>
+        <TextBlock Height="56"  Margin="469,12,470,0" Name="ActiveTurnText" Text="Current Turn" FontFamily="Celtic Garamond the 2nd" FontSize="40" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" VerticalAlignment="Top" />
+        <TextBlock Height="49"  Margin="95,0,0,70" Name="Player1NameText" Text="" FontFamily="Celtic Garamond the 2nd" FontSize="30" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Width="343" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Image Margin="0,0,17,127" Name="IceGiant" Stretch="Fill"  Source="Images/Nub.png" Height="546" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="" Name="Player2NameText" FontFamily="Celtic Garamond the 2nd" FontSize="30" FontWeight="Bold" Height="49" Margin="0,0,30,70" TextAlignment="Center" HorizontalAlignment="Right" Width="344" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Image HorizontalAlignment="Left" Margin="30,0,0,376" x:Name="SpeechBubble" Stretch="Fill" Width="219"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="213" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock x:Name="BubbleText" HorizontalAlignment="Left" Height="125" Margin="66,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149" FontFamily="Celtic Garamond the 2nd" Visibility="Hidden" FontSize="16" TextAlignment="Center" Grid.Row="1"/>
+        <Button x:Name="VikingButton" Content="" HorizontalAlignment="Left" Height="293" Margin="167,0,0,127" VerticalAlignment="Bottom" Width="199" Panel.ZIndex="-1" Click="VikingButton_Click" Grid.Row="1">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Armless.png"/>
+            </Button.Background>
+        </Button>
+        <StackPanel Name="fireDragonsStackPanel" Height="500" Margin="-90,190,1449,190" Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Image}" >
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Height" Value="83" />
+                    <Setter Property="Width" Value="83" />
+                    <Setter Property="Source" Value="pack://application:,,,/GUI/images/RedPup.png" />
+                    <Setter Property="Panel.ZIndex" Value="-2" />
+                    <Setter Property="Visibility" Value="Hidden" />
+                </Style>
+            </StackPanel.Resources>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+        </StackPanel>
+        <StackPanel Name="iceDragonsStackPanel" Height="500" Margin="1440,180,-90,200" Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Image}" >
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Height" Value="83" />
+                    <Setter Property="Width" Value="83" />
+                    <Setter Property="Source" Value="pack://application:,,,/GUI/images/BluePup.png" />
+                    <Setter Property="Panel.ZIndex" Value="-2" />
+                    <Setter Property="Visibility" Value="Hidden" />
+                </Style>
+            </StackPanel.Resources>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+        </StackPanel>
+        <Button x:Name="VikingButton_Sword" Content="" HorizontalAlignment="Left" Height="293" Margin="167,0,0,127" VerticalAlignment="Bottom" Width="199" Panel.ZIndex="-1" Click="VikingButton_Click" Grid.Row="1">
+            --><!--<Button.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="sword.Effect" Value="{StaticResource ShadowEffect}" />
+                </Trigger>
+            </Button.Triggers>-->
+            <!--<Setter Property="Effect" Value="{StaticResource ShadowEffect}" />--><!--
+            <Button.Background>
+                <ImageBrush x:Name="sword" ImageSource="Images/PointSword.png"/>
+            </Button.Background>
+        </Button>
+        <Image HorizontalAlignment="Left" Height="100" Margin="469,-52,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Overlay" Stretch="Fill"  Source="Images/OverLay.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" Panel.ZIndex="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Arm" Stretch="Fill"  Source="Images/Arm_New.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" FlowDirection="RightToLeft" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="SpeechBubble_Copy" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
+    </Grid>
+    <Page.Background>
+        <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />
+    </Page.Background>-->
+
+    <Page.Resources>
+
+        <!--<Storyboard x:Key="FadeOut" Completed="VikingButton_Mousedown">
+            <DoubleAnimation From="1" To="0" Storyboard.TargetName ="SpeechBubble" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="0:0:1"/>
+        </Storyboard>-->
+
+        <Style x:Key="ScrollFade" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Hidden</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2" SpeedRatio="0.25"/>
+                            <DoubleAnimation BeginTime="0:0:1.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" SpeedRatio="0.25"/>
+                            <ObjectAnimationUsingKeyFrames BeginTime="0:0:1.5" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Page.Resources>
+    <Grid Name="GameBackground">
+        <Grid.Background>
+            <ImageBrush />
+        </Grid.Background>
+        <Grid.Resources>
+            <DropShadowEffect x:Key="ShadowEffect" Color="#CEF6F5" Direction="325" Opacity="0.5" ShadowDepth="5" />
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="TextElement.Foreground" Value="#A9F5F2"/>
+                        <Setter Property="Effect" Value="{StaticResource ShadowEffect}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="44*"/>
+        </Grid.RowDefinitions>
+        <Popup x:Name="Message" Height="900" Width="650" Placement="Center" AllowsTransparency="True" PopupAnimation="Slide">
+            <Canvas HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="650">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/RosettaStoneCartoony.png"/>
+                </Canvas.Background>
+                <Button Height="47" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="MusicToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Music" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" BorderThickness="0" IsTabStop="False" Click="MusicToggle_Click" Canvas.Left="293" Canvas.Top="128" Foreground="#FFA48F0C" />
+                <Button Height="24" HorizontalAlignment="Left"  x:Name="MusicOff1" Panel.ZIndex="0"   VerticalAlignment="Top" Visibility="Hidden" Width="24" Click="MusicOff1_Click" Canvas.Left="248" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="MusicOff2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="27" Click="MusicOff2_Click" Canvas.Left="277" Canvas.Top="189" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="MusicOff4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="33" Click="MusicOff4_Click" Canvas.Left="344" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="MusicOff3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="30" Click="MusicOff3_Click" Canvas.Left="309" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="MusicOff5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="36" Click="MusicOff5_Click" Canvas.Left="382" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="MusicOff6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="39" Click="MusicOff6_Click" Canvas.Left="424" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="24" HorizontalAlignment="Left" x:Name="MusicOn1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Visible" Width="24" Click="MusicOn1_Click" Canvas.Left="248" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="MusicOn3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="30" Click="MusicOn3_Click" Canvas.Left="309" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="MusicOn4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="33" Click="MusicOn4_Click" Canvas.Left="344" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="MusicOn5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="36" Click="MusicOn5_Click" Canvas.Left="382" Canvas.Top="186" 
+                        >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="MusicOn6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="39" Click="MusicOn6_Click" Canvas.Left="424" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="MusicOn2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="27" Click="MusicOn2_Click" Canvas.Left="277" Canvas.Top="186" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="44" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="SoundToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Sound" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" BorderThickness="0"  IsTabStop="False" Click="SoundToggle_Click" Canvas.Left="293" Canvas.Top="269" Foreground="#FFA48F0C" />
+                <Button Height="24" HorizontalAlignment="Left" x:Name="SoundOn1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Visible" Width="24" Click="SoundOn1_Click" Canvas.Left="248" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="SoundOn3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="30" Click="SoundOn3_Click" Canvas.Left="309" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="SoundOn4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="33" Click="SoundOn4_Click" Canvas.Left="344" Canvas.Top="326" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="SoundOn5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="36" Click="SoundOn5_Click" Canvas.Left="382" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="SoundOn6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="39" Click="SoundOn6_Click" Canvas.Left="424" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="SoundOn2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="27" Click="SoundOn2_Click" Canvas.Left="277" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/BlueCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="24" HorizontalAlignment="Left" x:Name="SoundOff1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Hidden" Width="24" Click="SoundOff1_Click" Canvas.Left="248" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="30"  x:Name="SoundOff3" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="30" Click="SoundOff3_Click" Canvas.Left="309" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="33" x:Name="SoundOff4" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="33" Click="SoundOff4_Click" Canvas.Left="344" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="36"  x:Name="SoundOff5" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="36" Click="SoundOff5_Click" Canvas.Left="382" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="39"  x:Name="SoundOff6" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Width="39" Click="SoundOff6_Click" Canvas.Left="424" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="27"  x:Name="SoundOff2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Width="27" Click="SoundOff2_Click" Canvas.Left="277" Canvas.Top="326">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="Yes_Button" Content="Yes" Canvas.Left="382" Canvas.Top="647" Width="87" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Button_Click" Visibility="Hidden"/>
+                <Button x:Name="Resume_Button" Content="Resume" Canvas.Left="292" Canvas.Top="554" Width="147" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Cancel_Button_Click"/>
+                <Image x:Name="MusicMuteToggle" Height="42" Canvas.Left="434" Canvas.Top="133" Width="42" Source="Images/Unmute.png" MouseDown="MusicMuteToggle_Click"/>
+                <Image x:Name="SoundMuteToggle" Height="42" Canvas.Left="434" Canvas.Top="269" Width="42" Source="Images/Unmute.png" MouseDown="SoudMuteToggle_Click"/>
+                <Button x:Name="Exit_Button" Content="Exit" Canvas.Left="292" Canvas.Top="600" Width="147" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="Exit_Button_Click"/>
+                <Button x:Name="No_Button" Content="No" Canvas.Left="277" Canvas.Top="647" Width="87" Height="42" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA48F0C" FontFamily="Celtic Garamond the 2nd" FontSize="36" Click="No_Button_Click" Visibility="Hidden"/>
+                <Label x:Name="ConfirmLabel" Content="Are you sure?" Canvas.Left="224" Canvas.Top="591" Foreground="#FF0A8CB2" FontFamily="Celtic Garamond the 2nd" FontSize="36" Width="290" Visibility="Hidden"/>
+            </Canvas>
+        </Popup>
+        <!--Background="#BFC49A6C"-->
+        <Image x:Name="GridBackground" Panel.ZIndex="-9999" Height="500" Width="500" Source="Images/boatBoard.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="469,190,471,190" Grid.Row="1"/>
+        <UniformGrid Name="Board" MouseDown="Board_MouseDown" Height="500"  Width="500" Panel.ZIndex="-1"  MouseLeave="Board_MouseLeave" MouseMove="Board_MouseMove" Grid.Row="1">
+            <UniformGrid.Resources>
+                <Style TargetType="{x:Type Rectangle}" >
+                    <Setter Property="Stroke" Value="#000000" />
+                    <Setter Property="StrokeThickness" Value="2" />
+                    <Setter Property="Panel.ZIndex" Value="9999" />
+                </Style>
+            </UniformGrid.Resources>
+            <Rectangle>
+
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle>
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle>
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle  >
+            </Rectangle>
+            <Rectangle >
+            </Rectangle>
+        </UniformGrid>
+        <Image Height="100" Width="100" Margin="469,82,0,0" Name="btnClockWise1" Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" />
+        <Image Height="100" Width="100" Margin="371,180,0,0" Name="btnCounterClockWise1"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise1_MouseDown" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,82,470,0" Name="btnCounterClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,180,369,0" Name="btnClockWise2" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise2_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="371,0,0,200" Name="btnClockWise3" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="270"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="469,0,0,102" Name="btnCounterClockWise3"  Source="/Pentago;component/GUI/Images/ClockWise1.png" MouseDown="btnCounterClockWise3_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,0,470,102" Name="btnClockWise4"  Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Panel.ZIndex="10" Grid.Row="1">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Height="100" Width="100" Margin="0,0,369,200" Name="btnCounterClockWise4" Source="/Pentago;component/GUI/images/ClockWise1.png" MouseDown="btnCounterClockWise4_MouseDown" Visibility="Hidden" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="10" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Rectangle Height="75" Name="ActivePlayer" Stroke="Gray" Width="75" Margin="681,75,684,730" Grid.Row="1" />
+        <TextBlock Height="50"  Margin="511,0,497,70" Name="winnerAnnoucement" Text="" FontWeight="Bold" FontSize="24" FontFamily="Celtic Garamond the 2nd" TextAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Button Content="Pause" BorderThickness="0" BorderBrush="{x:Null}" FontFamily="Celtic Garamond the 2nd" FontSize="36" FontWeight="Bold" Height="79" Margin="0,32,85,0" Name="ExitButton"  Width="178" Click="ExitButton_Click" MouseEnter="ExitButton_MouseEnter" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Panel.ZIndex="100" >
+            <Button.Background>
+                <ImageBrush ImageSource="Images/PauseScroll.png"/>
+            </Button.Background>
+        </Button>
+        <TextBlock Height="56"  Margin="469,12,470,812" Name="ActiveTurnText" Text="Current Turn" FontFamily="Celtic Garamond the 2nd" FontSize="40" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" />
+        <TextBlock Height="49"  Margin="95,0,0,70" Name="Player1NameText" Text="" FontFamily="Celtic Garamond the 2nd" FontSize="30" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Width="343" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Image Margin="0,0,17,127" Name="IceGiant" Stretch="Fill"  Source="Images/Nub.png" Height="546" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="" Name="Player2NameText" FontFamily="Celtic Garamond the 2nd" FontSize="30" FontWeight="Bold" Height="49" Margin="0,0,30,70" TextAlignment="Center" HorizontalAlignment="Right" Width="344" VerticalAlignment="Bottom" Grid.Row="1" />
+        <Image HorizontalAlignment="Left" Margin="30,0,0,376" x:Name="SpeechBubble" Stretch="Fill" Width="219"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="213" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock x:Name="BubbleText" HorizontalAlignment="Left" Height="125" Margin="66,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149" FontFamily="Celtic Garamond the 2nd" Visibility="Hidden" FontSize="16" TextAlignment="Center" Grid.Row="1"/>
+        <Button x:Name="VikingButton" Content="" HorizontalAlignment="Left" Height="293" Margin="167,0,0,127" VerticalAlignment="Bottom" Width="199" Panel.ZIndex="-1" Click="VikingButton_Click" Grid.Row="1">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Armless.png"/>
+            </Button.Background>
+        </Button>
+        <StackPanel Name="fireDragonsStackPanel" Margin="-90,189,1449,191" Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Image}" >
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Height" Value="83" />
+                    <Setter Property="Width" Value="83" />
+                    <Setter Property="Source" Value="pack://application:,,,/GUI/images/RedPup.png" />
+                    <Setter Property="Panel.ZIndex" Value="-2" />
+                    <Setter Property="Visibility" Value="Visible" />
+                </Style>
+            </StackPanel.Resources>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+            <Image Margin="-1,0"/>
+        </StackPanel>
+        <StackPanel Name="iceDragonsStackPanel" Margin="1440,189,-90,191" Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Image}" >
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Height" Value="83" />
+                    <Setter Property="Width" Value="83" />
+                    <Setter Property="Source" Value="pack://application:,,,/GUI/images/BluePup.png" />
+                    <Setter Property="Panel.ZIndex" Value="-2" />
+                    <Setter Property="Visibility" Value="Visible" />
+                </Style>
+            </StackPanel.Resources>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+            <Image Margin="3,0"/>
+        </StackPanel>
+        <Button x:Name="VikingButton_Sword" Content="" HorizontalAlignment="Left" Height="293" Margin="167,0,0,127" VerticalAlignment="Bottom" Width="199" Panel.ZIndex="-1" Click="VikingButton_Click" Grid.Row="1">
+            <!--<Button.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="sword.Effect" Value="{StaticResource ShadowEffect}" />
+                </Trigger>
+            </Button.Triggers>-->
+            <!--<Setter Property="Effect" Value="{StaticResource ShadowEffect}" />-->
+            <Button.Background>
+                <ImageBrush x:Name="sword" ImageSource="Images/PointSword.png"/>
+            </Button.Background>
+        </Button>
+        <Image HorizontalAlignment="Left" Height="100" Margin="469,-52,0,0" VerticalAlignment="Top" Width="100" Grid.RowSpan="2"/>
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Overlay" Stretch="Fill"  Source="Images/OverLay.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" Panel.ZIndex="1" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="0,0,17,127" x:Name="IceGiant_Arm" Stretch="Fill"  Source="Images/Arm_New.png" HorizontalAlignment="Right" Width="342" RenderTransformOrigin="0.5,0.5" Height="546" VerticalAlignment="Bottom" Grid.Row="1" FlowDirection="RightToLeft" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="SpeechBubble_Copy" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Visible" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18"/>
+    </Grid>
+    <Page.Background>
+        <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />
+    </Page.Background>
+</Page>

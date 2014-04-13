@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Help" Height="900" Width="1440">
     <Window.Background>
-        <ImageBrush ImageSource="Images/ParchmentBack.jpg"/>
+        <ImageBrush ImageSource="/Pentago;component/GUI/Images/ParchmentBack.jpg"/>
     </Window.Background>
     <Grid>
         <Grid.Resources>
@@ -28,9 +28,9 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <Image x:Name="HelpImage" Height="506" Margin="0,0,92,188" VerticalAlignment="Bottom" Source="Images/Help1.png" HorizontalAlignment="Right" Width="806"/>
-        <Image x:Name="Elder" HorizontalAlignment="Left" Height="450" Margin="42,0,0,62" VerticalAlignment="Bottom" Width="334" Source="Images/Elder.png"/>
-        <Image x:Name="HelpBubble" HorizontalAlignment="Left" Height="311" Margin="136,0,0,453" VerticalAlignment="Bottom" Width="368" Source="Images/SpeechBubble.png" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="HelpImage" Height="506" Margin="0,0,92,188" VerticalAlignment="Bottom" Source="/Pentago;component/GUI/Images/Help1.png" HorizontalAlignment="Right" Width="806"/>
+        <Image x:Name="Elder" HorizontalAlignment="Left" Height="450" Margin="42,0,0,62" VerticalAlignment="Bottom" Width="334" Source="/Pentago;component/GUI/Images/Elder.png"/>
+        <Image x:Name="HelpBubble" HorizontalAlignment="Left" Height="311" Margin="136,0,0,453" VerticalAlignment="Bottom" Width="368" Source="/Pentago;component/GUI/Images/SpeechBubble.png" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -43,7 +43,7 @@
         <TextBlock x:Name="HelpTextBlock" HorizontalAlignment="Left" Height="141" Margin="198,0,0,566" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="228" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="16"/>
         <Button x:Name="HelpLeft"  HorizontalAlignment="Right" Margin="0,0,514,80" Width="148" Height="52" VerticalAlignment="Bottom" Click="HelpLeft_Click" Visibility="Hidden">
             <Button.Background>
-                <ImageBrush ImageSource="Images/flatArrow.png"/>
+                <ImageBrush ImageSource="/Pentago;component/GUI/Images/flatArrow.png"/>
             </Button.Background>
         </Button>
         <Button x:Name="HelpRight" Margin="0,0,279,78" RenderTransformOrigin="0.5,0.5" Height="52" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="148" Click="HelpRight_Click">
@@ -56,7 +56,7 @@
                 </TransformGroup>
             </Button.LayoutTransform>
             <Button.Background>
-                <ImageBrush ImageSource="Images/flatArrow.png"/>
+                <ImageBrush ImageSource="/Pentago;component/GUI/Images/flatArrow.png"/>
             </Button.Background>
         </Button>
         <Button Height="48" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="ExitHelp" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Exit Help" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" Margin="1067,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223" BorderThickness="0" MouseEnter="ExitHelp_MouseEnter" Click="ExitHelp_Click" />

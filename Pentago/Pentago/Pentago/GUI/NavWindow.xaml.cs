@@ -9,23 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Pentago.GUI
 {
     /// <summary>
-    /// Interaction logic for LoadingScreen.xaml
+    /// Interaction logic for NavWindow.xaml
     /// </summary>
-    public partial class LoadingScreen : Window
+    public partial class NavWindow : NavigationWindow
     {
-        public LoadingScreen(GameOptions options)
+        public NavWindow()
         {
             InitializeComponent();
-
-            Window gameWindow = new GameWindow(options);
-            gameWindow.Show();
-            this.Hide();
-
         }
     }
 }

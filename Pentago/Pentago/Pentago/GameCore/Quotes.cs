@@ -98,12 +98,19 @@ namespace Pentago.GameCore
 
         private void CreateLoadingQuotes()
         {
-            LoadingQuotes.Add("Vikings are ");
+            LoadingQuotes.Add("Vikings are Ferocious warriors of Northern Europe");
         }
 
         private void CreateVikingNames()
         {
-            VikingNames.Add("War Lord");
+            VikingNames.Add("Godfrid Blackeye");
+            VikingNames.Add("Bor Laughingsong");
+            VikingNames.Add("Thiodarr Rockfist");
+            VikingNames.Add("Haraldr Deathblade");
+            VikingNames.Add("Steinmir Wolfbasher");
+            VikingNames.Add("Roduulf Ragescream");
+            VikingNames.Add("Bjorn Stronghand");
+            VikingNames.Add("DeathLord Jeffery");
         }
 
         private void CreateElderQuotes()
@@ -116,12 +123,24 @@ namespace Pentago.GameCore
             ElderQuotes.Add("This is test #6");
             ElderQuotes.Add("This is test #7");
             ElderQuotes.Add("This is test #8");
-            ElderQuotes.Add("This is test #9");
+        }
+
+        private void CreateIceGiantQuotes()
+        {
+            IceGiantQuotes.Add("Zasmvar kardu sagas");
+            IceGiantQuotes.Add("Oromuragus mukzurri");
+            IceGiantQuotes.Add("Ollaus zornurzal hoggosh tonmok");
+            IceGiantQuotes.Add("Kelgurvar BOLVAR!!!");
+            IceGiantQuotes.Add("Thrudurl....");
+            IceGiantQuotes.Add("Is that the dreaded bunny weilding viking!?!?");
+            IceGiantQuotes.Add("Hurgurzul rukgurolek mahlstan Zustar'Geld");
+            IceGiantQuotes.Add("I don't even like ice...");
         }
 
         private List<string> LoadingQuotes;
         private List<string> VikingQuotes;
         private List<string> VikingNames;
         private List<string> ElderQuotes;
+        private List<string> IceGiantQuotes;
     }
 }

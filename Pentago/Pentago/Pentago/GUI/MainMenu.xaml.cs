@@ -32,6 +32,8 @@ namespace Pentago.GUI
 
         public PentagoNetwork networkUtil;
 
+        Window MainMenuWindow;
+
 
         private System.Windows.Point vikingArmPivot;
         private System.Windows.Point giantArmPivot;
@@ -62,8 +64,10 @@ namespace Pentago.GUI
             currentSoundVol = SoundManager.sfxVolume / 16;
             SoundManager.backgroundMusicPlayer.Open(new Uri("GUI/Sounds/Intro.mp3", UriKind.Relative));
             SoundManager.backgroundMusicPlayer.Play();
-
+            //Initialize profile manager
             profileManager = ProfileManager.InstanceCreator();
+            //MainMenuWindow = this;
+
 
             vikingArmPivot = new System.Windows.Point(167 + 40, this.Height - 420 + 121);
             zero = new System.Windows.Point(0, 0);
@@ -170,7 +174,6 @@ namespace Pentago.GUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
-            Environment.Exit(1);
         }
 
         private void Battle_Click(object sender, RoutedEventArgs e)
@@ -474,7 +477,6 @@ namespace Pentago.GUI
 
         private void GameOptionsButton_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             if (OptionsPanel.Visibility != Visibility.Visible)
             {
                 ReHideMenues();
@@ -485,7 +487,6 @@ namespace Pentago.GUI
 
         private void StoryMode_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             //if it is already visible, dont show it again!
             if (StoryModePanel.Visibility != Visibility.Visible)
             {
@@ -513,7 +514,6 @@ namespace Pentago.GUI
 
         private void NewProfile_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             if (NewProfilePanel.Visibility != Visibility.Visible)
             {
                 ProfileList.Visibility = Visibility.Hidden;
@@ -527,7 +527,7 @@ namespace Pentago.GUI
 
         private void ExistingProfile_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
+
             NewProfilePanel.Visibility = Visibility.Hidden;
             ProfileList.Visibility = Visibility.Visible;
             ContineAdventure.Visibility = Visibility.Visible;
@@ -542,20 +542,17 @@ namespace Pentago.GUI
 
         private void QuitToMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             OnlineMenuPanel.Visibility = Visibility.Hidden;
         }
 
         private void OnlineGame_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ReHideMenues();
             OnlineMenuPanel.Visibility = Visibility.Visible;
         }
         
         private void FindOpponent_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             OpponentsTag.Visibility = Visibility.Visible;
             if (networkUtil == null)
             {
@@ -633,7 +630,6 @@ namespace Pentago.GUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             AvailableLobbies.Items.Clear();
             foreach (PentagoNetwork.peerType p in networkUtil.availablePeers)
             {
@@ -647,13 +643,11 @@ namespace Pentago.GUI
 
         private void ChallengeOpponent_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             networkUtil.ConnectUsingIndex(AvailableLobbies.SelectedIndex);
         }
 
         private void ChallengeAccept_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             networkUtil.AcceptConnection();
         }
 
@@ -666,7 +660,7 @@ namespace Pentago.GUI
 
         private void CreateNewProfile_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
+            
         }
 
         private bool IsProfileNameValid(string profileName)
@@ -711,7 +705,6 @@ namespace Pentago.GUI
 
         private void Highscores_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ReHideMenues();
             HighScorePanel.Visibility = Visibility.Visible;
         }
@@ -726,7 +719,6 @@ namespace Pentago.GUI
 
         public void MusicToggle_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             if (currentMusicVol == 0)
             {
                 restoreMusicVol(unMuteMusicVol);
@@ -754,7 +746,6 @@ namespace Pentago.GUI
 
         public void SoundToggle_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             if (currentSoundVol == 0)
             {
                 restoreSoundVol(unMuteSoundVol);
@@ -953,7 +944,6 @@ namespace Pentago.GUI
 
         private void MusicOff1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 1;
             unMuteMusicVol = 1;
             restoreMusicVol(currentMusicVol);
@@ -961,7 +951,6 @@ namespace Pentago.GUI
 
         private void MusicOff2_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 2;
             unMuteMusicVol = 2;
             restoreMusicVol(currentMusicVol);
@@ -969,7 +958,6 @@ namespace Pentago.GUI
 
         private void MusicOff3_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 3;
             unMuteMusicVol = 3;
             restoreMusicVol(currentMusicVol);
@@ -977,7 +965,6 @@ namespace Pentago.GUI
 
         private void MusicOff4_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 4;
             unMuteMusicVol = 4;
             restoreMusicVol(currentMusicVol);
@@ -985,7 +972,6 @@ namespace Pentago.GUI
 
         private void MusicOff5_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 5;
             unMuteMusicVol = 5;
             restoreMusicVol(currentMusicVol);
@@ -993,7 +979,6 @@ namespace Pentago.GUI
 
         private void MusicOff6_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 6;
             unMuteMusicVol = 6;
             restoreMusicVol(currentMusicVol);
@@ -1001,7 +986,6 @@ namespace Pentago.GUI
 
         private void MusicOn1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 1;
             unMuteMusicVol = 1;
             restoreMusicVol(currentMusicVol);
@@ -1009,7 +993,6 @@ namespace Pentago.GUI
 
         private void MusicOn2_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 2;
             unMuteMusicVol = 2;
             restoreMusicVol(currentMusicVol);
@@ -1017,7 +1000,6 @@ namespace Pentago.GUI
 
         private void MusicOn3_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 3;
             unMuteMusicVol = 3;
             restoreMusicVol(currentMusicVol);
@@ -1025,7 +1007,6 @@ namespace Pentago.GUI
 
         private void MusicOn4_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 4;
             unMuteMusicVol = 4;
             restoreMusicVol(currentMusicVol);
@@ -1033,7 +1014,6 @@ namespace Pentago.GUI
 
         private void MusicOn5_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 5;
             unMuteMusicVol = 5;
             restoreMusicVol(currentMusicVol);
@@ -1041,7 +1021,6 @@ namespace Pentago.GUI
 
         private void MusicOn6_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentMusicVol = 6;
             unMuteMusicVol = 6;
             restoreMusicVol(currentMusicVol);
@@ -1049,7 +1028,6 @@ namespace Pentago.GUI
 
         private void SoundOff1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 1;
             unMuteSoundVol = 1;
             restoreSoundVol(currentSoundVol);
@@ -1057,7 +1035,6 @@ namespace Pentago.GUI
 
         private void SoundOff2_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 2;
             unMuteSoundVol = 2;
             restoreSoundVol(currentSoundVol);
@@ -1065,7 +1042,6 @@ namespace Pentago.GUI
 
         private void SoundOff3_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 3;
             unMuteSoundVol = 3;
             restoreSoundVol(currentSoundVol);
@@ -1073,7 +1049,6 @@ namespace Pentago.GUI
 
         private void SoundOff4_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 4;
             unMuteSoundVol = 4;
             restoreSoundVol(currentSoundVol);
@@ -1081,7 +1056,6 @@ namespace Pentago.GUI
 
         private void SoundOff5_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 5;
             unMuteSoundVol = 5;
             restoreSoundVol(currentSoundVol);
@@ -1089,7 +1063,6 @@ namespace Pentago.GUI
 
         private void SoundOff6_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 6;
             unMuteSoundVol = 6;
             restoreSoundVol(currentSoundVol);
@@ -1097,7 +1070,6 @@ namespace Pentago.GUI
 
         private void SoundOn1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 1;
             unMuteSoundVol = 1;
             restoreSoundVol(currentSoundVol);
@@ -1105,7 +1077,6 @@ namespace Pentago.GUI
 
         private void SoundOn2_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 2;
             unMuteSoundVol = 2;
             restoreSoundVol(currentSoundVol);
@@ -1113,7 +1084,6 @@ namespace Pentago.GUI
 
         private void SoundOn3_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 3;
             unMuteSoundVol = 3;
             restoreSoundVol(currentSoundVol);
@@ -1121,7 +1091,6 @@ namespace Pentago.GUI
 
         private void SoundOn4_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 4;
             unMuteSoundVol = 4;
             restoreSoundVol(currentSoundVol);
@@ -1129,7 +1098,6 @@ namespace Pentago.GUI
 
         private void SoundOn5_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 5;
             unMuteSoundVol = 5;
             restoreSoundVol(currentSoundVol);
@@ -1137,7 +1105,6 @@ namespace Pentago.GUI
 
         private void SoundOn6_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             currentSoundVol = 6;
             unMuteSoundVol = 6;
             restoreSoundVol(currentSoundVol);
@@ -1149,7 +1116,6 @@ namespace Pentago.GUI
 
         private void ArmorCycleRight_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ArmorCount++;
             if (ArmorCount == 6)
             {
@@ -1160,7 +1126,6 @@ namespace Pentago.GUI
 
         private void ArmorCycleLeft_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ArmorCount--;
             if (ArmorCount == 0)
             {
@@ -1308,7 +1273,6 @@ namespace Pentago.GUI
 
         private void BeardCycleRight_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             BeardCount++;
             if (BeardCount == 6)
             {
@@ -1319,7 +1283,6 @@ namespace Pentago.GUI
 
         private void BeardCycleLeft_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             BeardCount--;
             if (BeardCount == 0)
             {
@@ -1330,7 +1293,6 @@ namespace Pentago.GUI
 
         private void PantsCycleRight_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             PantsCount++;
             if (PantsCount == 8)
             {
@@ -1341,7 +1303,6 @@ namespace Pentago.GUI
 
         private void PantsCycleLeft_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             PantsCount--;
             if (PantsCount == 0)
             {
@@ -1357,7 +1318,7 @@ namespace Pentago.GUI
 
         private void SaveProfile_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
+
             string newProfileName = NewProfileName.Text;
             newProfileName = newProfileName.Trim();
             if (IsProfileNameValid(newProfileName))
@@ -1416,14 +1377,12 @@ namespace Pentago.GUI
 
         private void PlayerProfile_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ReHideMenues();
             PlayerProfilePanel.Visibility = Visibility.Visible;
         }
 
         private void GameDifficultyBeginnerOff_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             GameDifficultyBeginnerOff.Visibility = Visibility.Hidden;
             GameDifficultyBeginnerOn.Visibility = Visibility.Visible;
 
@@ -1443,7 +1402,6 @@ namespace Pentago.GUI
 
         private void GameDifficultyEasyOff_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             GameDifficultyBeginnerOff.Visibility = Visibility.Visible;
             GameDifficultyBeginnerOn.Visibility = Visibility.Hidden;
 
@@ -1463,7 +1421,6 @@ namespace Pentago.GUI
 
         private void GameDifficultyMediumOff_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             GameDifficultyBeginnerOff.Visibility = Visibility.Visible;
             GameDifficultyBeginnerOn.Visibility = Visibility.Hidden;
 
@@ -1483,7 +1440,6 @@ namespace Pentago.GUI
 
         private void GameDifficultyHardOff_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             GameDifficultyBeginnerOff.Visibility = Visibility.Visible;
             GameDifficultyBeginnerOn.Visibility = Visibility.Hidden;
             GameDifficultyEasyOff.Visibility = Visibility.Visible;
@@ -1499,7 +1455,6 @@ namespace Pentago.GUI
 
         private void GameDifficultyExpertOff_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             GameDifficultyBeginnerOff.Visibility = Visibility.Visible;
             GameDifficultyBeginnerOn.Visibility = Visibility.Hidden;
             GameDifficultyEasyOff.Visibility = Visibility.Visible;
@@ -1519,7 +1474,6 @@ namespace Pentago.GUI
 
         private void BeardCycleRight1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             BeardCount1++;
             if (BeardCount1 == 6)
             {
@@ -1530,7 +1484,6 @@ namespace Pentago.GUI
 
         private void BeardCycleLeft1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             BeardCount1--;
             if (BeardCount1 == 0)
             {
@@ -1541,7 +1494,6 @@ namespace Pentago.GUI
 
         private void ArmorCycleRight1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ArmorCount1++;
             if (ArmorCount1 == 6)
             {
@@ -1552,7 +1504,6 @@ namespace Pentago.GUI
 
         private void ArmorCycleLeft1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ArmorCount1--;
             if (ArmorCount1 == 0)
             {
@@ -1563,7 +1514,6 @@ namespace Pentago.GUI
 
         private void PantsCycleRight1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             PantsCount1++;
             if (PantsCount1 == 8)
             {
@@ -1574,7 +1524,6 @@ namespace Pentago.GUI
 
         private void PantsCycleLeft1_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             PantsCount1--;
             if (PantsCount1 == 0)
             {
@@ -1722,15 +1671,14 @@ namespace Pentago.GUI
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             ReHideMenues();
-            Help help = new Help();
-            help.Show();
+            //Help help = new Help();
+            //help.Show();
+
         }
 
         private void ContineAdventure_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             try
             {
                 string profileName = ProfileList.SelectedValue.ToString().Trim();
@@ -1768,7 +1716,7 @@ namespace Pentago.GUI
                     Player player1 = new Player(player1Name.Trim(), isPlayer1Active, player1Image, player1ImageHover);
                     computerAI computerPlayer = new computerAI(computerPlayerName.Trim(), !isPlayer1Active, computerPlayerImage, computerPlayerImageHover, difficulty);
 
-                    GameOptions gameOptions = new GameOptions(GameOptions.TypeOfGame.Campaign, player1, computerPlayer);
+                    GameOptions gameOptions = new GameOptions(GameOptions.TypeOfGame.AI, player1, computerPlayer);
                     Window mapWindow = new MapWindow(gameOptions);
                     App.Current.MainWindow = mapWindow;
                     mapWindow.Show();

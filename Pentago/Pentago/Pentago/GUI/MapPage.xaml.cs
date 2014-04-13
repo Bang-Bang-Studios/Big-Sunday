@@ -21,7 +21,7 @@ namespace Pentago.GUI
     /// <summary>
     /// Interaction logic for MapWindow.xaml
     /// </summary>
-    public partial class MapWindow : Window
+    public partial class MapPage : Page
     {
         ProfileManager profileManager = null;
 
@@ -32,7 +32,7 @@ namespace Pentago.GUI
 
         private BitmapImage lockImage = new BitmapImage(new Uri("pack://application:,,,/GUI/images/lock.png", UriKind.Absolute));
         private string profileName;
-        public MapWindow(GameOptions options)
+        public MapPage(GameOptions options)
         {
             InitializeComponent();
             profileManager = ProfileManager.InstanceCreator();
@@ -99,10 +99,8 @@ namespace Pentago.GUI
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            Window mainMenu = new MainMenu();
-            App.Current.MainWindow = mainMenu;
-            mainMenu.Show();
-            this.Hide();
+            MenuPage menu = new MenuPage();
+            NavigationService.Navigate(menu);
         }
 
         private void GoBackButton_MouseEnter(object sender, MouseEventArgs e)
@@ -144,10 +142,9 @@ namespace Pentago.GUI
             computerAI computerPlayer = new computerAI(computerPlayerName.Trim(), !isPlayer1Active, computerPlayerImage, computerPlayerImageHover, difficulty);
 
             GameOptions gameOptions = new GameOptions(GameOptions.TypeOfGame.Campaign, player1, computerPlayer, levelBeingPlay);
-            Window gameWindow = new GameWindow(gameOptions);
-            App.Current.MainWindow = gameWindow;
-            gameWindow.Show();
-            this.Hide();
+
+            GamePage game = new GamePage(gameOptions);
+            NavigationService.Navigate(game);
         }
 
         private void Boat1_MouseDown(object sender, MouseButtonEventArgs e)
@@ -187,3 +184,4 @@ namespace Pentago.GUI
         }
     }
 }
+
