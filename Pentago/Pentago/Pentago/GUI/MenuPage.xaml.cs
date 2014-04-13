@@ -60,6 +60,8 @@ namespace Pentago.GUI
             unMuteSoundVol = SoundManager.sfxVolume / 16;
             currentMusicVol = SoundManager.musicVolume / 16;
             currentSoundVol = SoundManager.sfxVolume / 16;
+            restoreMusicVol(currentMusicVol);
+            restoreSoundVol(currentSoundVol);
 
             profileManager = ProfileManager.InstanceCreator();
 
@@ -715,11 +717,11 @@ namespace Pentago.GUI
 
         public void MusicToggle_Click(object sender, RoutedEventArgs e)
         {
-            SoundManager.playSFX(SoundManager.SoundType.Click);
             if (currentMusicVol == 0)
             {
                 restoreMusicVol(unMuteMusicVol);
                 currentMusicVol = unMuteMusicVol;
+                MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
             }
 
             else if (currentMusicVol > 0)
@@ -738,6 +740,7 @@ namespace Pentago.GUI
                 MusicOff6.Visibility = Visibility.Visible;
                 currentMusicVol = 0;
                 SoundManager.musicVolume = 0;
+                MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute)));
             }
         }
 
@@ -748,6 +751,7 @@ namespace Pentago.GUI
             {
                 restoreSoundVol(unMuteSoundVol);
                 currentSoundVol = unMuteSoundVol;
+                SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
             }
 
             else if (currentSoundVol > 0)
@@ -766,12 +770,30 @@ namespace Pentago.GUI
                 SoundOff6.Visibility = Visibility.Visible;
                 currentSoundVol = 0;
                 SoundManager.sfxVolume = 0;
+                SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute)));
             }
         }
         private void restoreMusicVol(int i)
         {
             switch (i)
             {
+                case 0:
+                    MusicOn1.Visibility = Visibility.Hidden;
+                    MusicOn2.Visibility = Visibility.Hidden;
+                    MusicOn3.Visibility = Visibility.Hidden;
+                    MusicOn4.Visibility = Visibility.Hidden;
+                    MusicOn5.Visibility = Visibility.Hidden;
+                    MusicOn6.Visibility = Visibility.Hidden;
+                    MusicOff1.Visibility = Visibility.Visible;
+                    MusicOff2.Visibility = Visibility.Visible;
+                    MusicOff3.Visibility = Visibility.Visible;
+                    MusicOff4.Visibility = Visibility.Visible;
+                    MusicOff5.Visibility = Visibility.Visible;
+                    MusicOff6.Visibility = Visibility.Visible;
+                    currentMusicVol = 0;
+                    SoundManager.musicVolume = 0;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute)));
+                    break;
                 case 1: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Hidden;
                     MusicOn3.Visibility = Visibility.Hidden;
@@ -784,6 +806,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 2: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -797,6 +820,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 3: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -810,6 +834,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 4: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -823,6 +848,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 5: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -836,6 +862,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Hidden;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 6: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -849,6 +876,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Hidden;
                     MusicOff6.Visibility = Visibility.Hidden;
+                    MusicMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
             }
             SoundManager.musicVolume = 16 * i;
@@ -858,6 +886,23 @@ namespace Pentago.GUI
         {
             switch (i)
             {
+                case 0:
+                    SoundOn1.Visibility = Visibility.Hidden;
+                    SoundOn2.Visibility = Visibility.Hidden;
+                    SoundOn3.Visibility = Visibility.Hidden;
+                    SoundOn4.Visibility = Visibility.Hidden;
+                    SoundOn5.Visibility = Visibility.Hidden;
+                    SoundOn6.Visibility = Visibility.Hidden;
+                    SoundOff1.Visibility = Visibility.Visible;
+                    SoundOff2.Visibility = Visibility.Visible;
+                    SoundOff3.Visibility = Visibility.Visible;
+                    SoundOff4.Visibility = Visibility.Visible;
+                    SoundOff5.Visibility = Visibility.Visible;
+                    SoundOff6.Visibility = Visibility.Visible;
+                    currentSoundVol = 0;
+                    SoundManager.sfxVolume = 0;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute)));
+                    break;
                 case 1: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Hidden;
                     SoundOn3.Visibility = Visibility.Hidden;
@@ -870,6 +915,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 2: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -883,6 +929,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 3: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -896,6 +943,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 4: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -909,6 +957,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 5: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -922,6 +971,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Hidden;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
                 case 6: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -935,6 +985,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Hidden;
                     SoundOff6.Visibility = Visibility.Hidden;
+                    SoundMuteButton.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute)));
                     break;
             }
             SoundManager.sfxVolume = 16 * i;
@@ -1781,6 +1832,16 @@ namespace Pentago.GUI
             {
                 OnlineMenuPanel.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void MusicMuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            MusicToggle_Click(sender, e);
+        }
+
+        private void SoundMuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            SoundToggle_Click(sender, e);
         }
     }
 }

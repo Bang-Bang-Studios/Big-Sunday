@@ -82,6 +82,7 @@ namespace Pentago.GUI
 
         ProfileManager profileManager = null;
 
+        private int levelPlay;
         public GamePage(GameOptions options)
         {
             InitializeComponent();
@@ -127,6 +128,7 @@ namespace Pentago.GUI
                     break;
                 case GameOptions.TypeOfGame.Campaign:
                     profileManager = ProfileManager.InstanceCreator();
+                    levelPlay = options._LevelPlay;
                     SetUpCampaign(options._LevelPlay);
                     player1 = options._Player1;
                     computerPlayer = options._ComputerPlayer;
@@ -151,10 +153,11 @@ namespace Pentago.GUI
                 bmp.Dispose();
                 VikingButton.Background = new ImageBrush(bmpSrc);
             }
-            vikingArmPivot = new Point(167 + 40, this.Height - 420 + 121);
+
+            vikingArmPivot = new Point(167 + 40, System.Windows.SystemParameters.PrimaryScreenHeight - 420 + 121);
             zero = new Point(0, 0);
-            topRight = new Point(Width, 0);
-            iceGiantArmPivot = new Point(Width - 261, Height - 600);
+            topRight = new Point(System.Windows.SystemParameters.PrimaryScreenWidth, 0);
+            iceGiantArmPivot = new Point(System.Windows.SystemParameters.PrimaryScreenWidth - 261, System.Windows.SystemParameters.PrimaryScreenHeight - 600);
 
             unMuteMusicVol = SoundManager.musicVolume / 16;
             unMuteSoundVol = SoundManager.sfxVolume / 16;
@@ -515,19 +518,39 @@ namespace Pentago.GUI
             switch (winner)
             {
                 case 1:
-                    winnerText = "Congratulations " + player1.Name + " you have won!";
+
                     if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
-                        profileManager.IncrementCampaignLevel(player1.Name);
+                    {
+                        profileManager.IncrementCampaignLevel(player1.Name, levelPlay);
+                    }
+                        
+                    GameOverTextBlock.Text = "Congratulations " + player1.Name + " you have won!";
+                    GameOver.IsOpen = true;
+                    winnerText = "Congratulations " + player1.Name + " you have won!";
                     break;
                 case 2:
                     if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.QuickMatch)
+                    {
+                        GameOverTextBlock.Text = "Congratulations " + player2.Name + " you have won!";
+                        GameOver.IsOpen = true;
                         winnerText = "Congratulations " + player2.Name + " you have won!";
+                    }
                     else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.AI || gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
+                    {
+                        GameOverTextBlock.Text = "The " + computerPlayer.Name + " has won.";
+                        GameOver.IsOpen = true;
                         winnerText = "The " + computerPlayer.Name + " has won.";
+                    }
                     else if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Network)
+                    {
+                        GameOverTextBlock.Text = player2.Name + " has defeated you.";
+                        GameOver.IsOpen = true;
                         winnerText = player2.Name + " has defeated you.";
+                    }
                     break;
                 case 3:
+                    GameOverTextBlock.Text = "It's a tie.";
+                    GameOver.IsOpen = true;
                     winnerText = "It is a tie.";
                     break;
                 default:
@@ -738,7 +761,8 @@ namespace Pentago.GUI
                     if (gameBrain.isPlayer1Turn())
                     {
                         fireDragon = true;
-                        currentDragon = fireDragonEntryImages[row];
+                        int computerRow = gameBrain.GetComputerMove() / 6;
+                        currentDragon = fireDragonEntryImages[computerRow];
                         currentDragon.RenderTransform = translate;
                         currentDragon.Visibility = Visibility.Visible;
                         enter = new DoubleAnimation(0, GetFireAnimationDestination(element, targetPoint), TimeSpan.FromSeconds(1));
@@ -802,21 +826,85 @@ namespace Pentago.GUI
             RotateAnimation(quad, isClockWise);
         }
 
+        private bool networkIsClockwise;
+        private short networkQuadToRotate;
+        private int networkMove;
+
         private void NetworkMoveReceived(object move, EventArgs e)
         {
             PentagoNetwork.moveType mov = (PentagoNetwork.moveType)move;
             gameBrain.PlacePieceByPos(mov.position);
+            networkMove = mov.position;
+            networkIsClockwise = mov.isClockwise;
+            networkQuadToRotate = mov.quad;
             this.Dispatcher.BeginInvoke(new Action(delegate()
                 {
-                    InitiateRotation(mov.isClockwise, mov.quad);
-                    RePaintBoard();
                     int winner = gameBrain.CheckForWin();
-                    if (winner != 0)
+
+                    if (winner == 0)
                     {
+                        TranslateTransform translate = new TranslateTransform();
+                        DoubleAnimation enter;
+                        Point targetPoint;
+                        //userMadeRotation = false;
+                        var element = networkMove;
+                        Rectangle rec = rectangleChildren.ElementAt(networkMove);
+                        targetPoint = rec.TranslatePoint(new Point(rec.ActualWidth, 0), Board);
+                        if (gameBrain.isPlayer1Turn())
+                        {
+                            fireDragon = true;
+                            int computerRow = networkMove / 6;
+                            currentDragon = fireDragonEntryImages[computerRow];
+                            currentDragon.RenderTransform = translate;
+                            currentDragon.Visibility = Visibility.Visible;
+                            enter = new DoubleAnimation(0, GetFireAnimationDestination(element, targetPoint), TimeSpan.FromSeconds(1));
+                        }
+                        else
+                        {
+                            fireDragon = false;
+                            int computerRow = networkMove / 6;
+                            currentDragon = iceDragonEntryImages[computerRow];
+                            currentDragon.RenderTransform = translate;
+                            currentDragon.Visibility = Visibility.Visible;
+                            enter = new DoubleAnimation(0, -GetIceAnimationDestination(element), TimeSpan.FromSeconds(1));
+                        }
+                        enter.Completed += new EventHandler(NetworkRotate);
+                        isAnimationEnterExecuting = true;
+                        translate.BeginAnimation(TranslateTransform.XProperty, enter);
+                    }
+                    else if (winner != 0)
+                    {
+                        RePaintBoard();
                         ShowWinner(winner);
                     }
                 }), null);
+            
+        }
 
+        private void NetworkRotate(object sender, EventArgs e)
+        {
+            SoundManager.playSFX(SoundManager.SoundType.Click);
+            isAnimationEnterExecuting = false;
+            currentDragon.Visibility = Visibility.Hidden;
+            Rectangle rec = rectangleChildren.ElementAt(networkMove);
+            if (gameBrain.isPlayer1Turn())
+                rec.Fill = player1.Image;
+            else
+                rec.Fill = player2.Image;
+            int winner = gameBrain.CheckForWin();
+            if (winner != 0)
+                ShowWinner(winner);
+            else
+            {
+                RotateAnimation(networkQuadToRotate, networkIsClockwise);
+                if (networkQuadToRotate != -1)
+                {
+                    gameBrain.RotateBoard(networkIsClockwise, networkQuadToRotate, 1);
+                    gameBrain.RotateBoard(networkIsClockwise, networkQuadToRotate, 2);
+
+                }
+            }
+            ReturnDragon();
         }
 
         private void InitiateRotation(bool rotateClockwise, short quad)
@@ -1807,14 +1895,6 @@ namespace Pentago.GUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Window mainWindow = new MainMenu();
-            //App.Current.MainWindow = mainWindow;
-            //mainWindow.Show();
-            //if (networkUtil != null)
-            //{
-            //    networkUtil.stop();
-            //}
-            //this.Hide();
         }
 
         private void Test_Click(object sender, RoutedEventArgs e)
@@ -1824,23 +1904,6 @@ namespace Pentago.GUI
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            //SoundManager.playSFX(SoundManager.SoundType.Click);
-
-            //const string message = "Are you sure you want to exit the game?";
-            //MessageWindow messageWindow = new MessageWindow(message, MessageBoxButton.YesNo);
-            //messageWindow.ShowDialog();
-
-            //if (messageWindow.DialogResult == true)
-            //{
-            //    Window mainWindow = new MainMenu();
-            //    App.Current.MainWindow = mainWindow;
-            //    mainWindow.Show();
-            //    if (networkUtil != null)
-            //    {
-            //        networkUtil.stop();
-            //    }
-            //    this.Close();
-            //}
             Message.IsOpen = !Message.IsOpen;
         }
 
@@ -1858,7 +1921,6 @@ namespace Pentago.GUI
                 SpeechCounter = 0;
             }
             BubbleText.Text = quotes.Viking;
-            //BubbleText.Text = VikingSpeechChanger(SpeechCounter);
             SpeechCounter++;
 
             Storyboard storyboard = new Storyboard();
@@ -1998,22 +2060,7 @@ namespace Pentago.GUI
 
         private void Game_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (!lockSword)
-            //{
-            //    RotateSword(e);
-            //}
-            //RotateClub(e);
-
-            //Point mousePositionRelativeToWindow = e.GetPosition(this);
-            //TransformGroup t = new TransformGroup();
-            //t.Children.Add(new TranslateTransform(mousePositionRelativeToWindow.X + 1, mousePositionRelativeToWindow.Y + 1));
-            //Pointer.RenderTransform = t;
         }
-
-        //private void Pointer_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    Pointer.Visibility = Visibility.Hidden;
-        //}
 
         private void SoudMuteToggle_Click(object sender, MouseButtonEventArgs e)
         {
@@ -2086,6 +2133,23 @@ namespace Pentago.GUI
         {
             switch (i)
             {
+                case 0:
+                    MusicOn1.Visibility = Visibility.Hidden;
+                    MusicOn2.Visibility = Visibility.Hidden;
+                    MusicOn3.Visibility = Visibility.Hidden;
+                    MusicOn4.Visibility = Visibility.Hidden;
+                    MusicOn5.Visibility = Visibility.Hidden;
+                    MusicOn6.Visibility = Visibility.Hidden;
+                    MusicOff1.Visibility = Visibility.Visible;
+                    MusicOff2.Visibility = Visibility.Visible;
+                    MusicOff3.Visibility = Visibility.Visible;
+                    MusicOff4.Visibility = Visibility.Visible;
+                    MusicOff5.Visibility = Visibility.Visible;
+                    MusicOff6.Visibility = Visibility.Visible;
+                    currentMusicVol = 0;
+                    SoundManager.musicVolume = 0;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute));
+                    break;
                 case 1: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Hidden;
                     MusicOn3.Visibility = Visibility.Hidden;
@@ -2098,6 +2162,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 2: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -2111,6 +2176,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 3: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -2124,6 +2190,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Visible;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 4: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -2137,6 +2204,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Visible;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 5: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -2150,6 +2218,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Hidden;
                     MusicOff6.Visibility = Visibility.Visible;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 6: MusicOn1.Visibility = Visibility.Visible;
                     MusicOn2.Visibility = Visibility.Visible;
@@ -2163,6 +2232,7 @@ namespace Pentago.GUI
                     MusicOff4.Visibility = Visibility.Hidden;
                     MusicOff5.Visibility = Visibility.Hidden;
                     MusicOff6.Visibility = Visibility.Hidden;
+                    MusicMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
             }
             SoundManager.musicVolume = 16 * i;
@@ -2172,6 +2242,23 @@ namespace Pentago.GUI
         {
             switch (i)
             {
+                case 0:
+                    SoundOn1.Visibility = Visibility.Hidden;
+                    SoundOn2.Visibility = Visibility.Hidden;
+                    SoundOn3.Visibility = Visibility.Hidden;
+                    SoundOn4.Visibility = Visibility.Hidden;
+                    SoundOn5.Visibility = Visibility.Hidden;
+                    SoundOn6.Visibility = Visibility.Hidden;
+                    SoundOff1.Visibility = Visibility.Visible;
+                    SoundOff2.Visibility = Visibility.Visible;
+                    SoundOff3.Visibility = Visibility.Visible;
+                    SoundOff4.Visibility = Visibility.Visible;
+                    SoundOff5.Visibility = Visibility.Visible;
+                    SoundOff6.Visibility = Visibility.Visible;
+                    currentSoundVol = 0;
+                    SoundManager.sfxVolume = 0;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/MuteLight.png", UriKind.Absolute));
+                    break;
                 case 1: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Hidden;
                     SoundOn3.Visibility = Visibility.Hidden;
@@ -2184,6 +2271,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 2: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -2197,6 +2285,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 3: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -2210,6 +2299,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Visible;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 4: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -2223,6 +2313,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Visible;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 5: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -2236,6 +2327,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Hidden;
                     SoundOff6.Visibility = Visibility.Visible;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
                 case 6: SoundOn1.Visibility = Visibility.Visible;
                     SoundOn2.Visibility = Visibility.Visible;
@@ -2249,6 +2341,7 @@ namespace Pentago.GUI
                     SoundOff4.Visibility = Visibility.Hidden;
                     SoundOff5.Visibility = Visibility.Hidden;
                     SoundOff6.Visibility = Visibility.Hidden;
+                    SoundMuteToggle.Source = new BitmapImage(new Uri("pack://application:,,,/GUI/images/Unmute.png", UriKind.Absolute));
                     break;
             }
             SoundManager.sfxVolume = 16 * i;
@@ -2484,10 +2577,50 @@ namespace Pentago.GUI
 
         private void GameBackground_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.OriginalSource != Message)
+            //if (e.OriginalSource != Message)
+            //{
+            //    Message.IsOpen = false;
+            //}
+        }
+
+        private void GameOverExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameOverYesButton.Visibility = Visibility.Visible;
+            GameOverNoButton.Visibility = Visibility.Visible;
+            GameOverConfirmLabel.Visibility = Visibility.Visible;
+            GameOverExitButton.Visibility = Visibility.Hidden;
+        }
+
+        private void GameOverResumeButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameOver.IsOpen = false;
+        }
+
+        private void GameOverYesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (networkUtil != null)
             {
-                Message.IsOpen = false;
+                networkUtil.stop();
             }
+            Message.IsOpen = false;
+            if (gameOptions._TypeOfGame == GameOptions.TypeOfGame.Campaign)
+            {
+                MapPage map = new MapPage(gameOptions);
+                NavigationService.Navigate(map);
+            }
+            else
+            {
+                MenuPage menu = new MenuPage();
+                NavigationService.Navigate(menu);
+            }
+        }
+
+        private void GameOverNoButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameOverYesButton.Visibility = Visibility.Hidden;
+            GameOverNoButton.Visibility = Visibility.Hidden;
+            GameOverConfirmLabel.Visibility = Visibility.Hidden;
+            GameOverExitButton.Visibility = Visibility.Visible;
         }
     }
 }

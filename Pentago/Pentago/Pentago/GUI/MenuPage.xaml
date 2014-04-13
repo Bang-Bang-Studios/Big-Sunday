@@ -478,7 +478,7 @@
                     <ImageBrush ImageSource="Images/BlueCrystal.png"/>
                 </Button.Background>
             </Button>
-            <Button Height="44" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="SoundToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Sound" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146" BorderThickness="0" MouseEnter="StoryMode_MouseEnter" IsTabStop="False" Margin="-250,212,0,0" Click="SoundToggle_Click" />
+            <Button Height="44" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" x:Name="SoundToggle" Opacity="1" Panel.ZIndex="0" ContentStringFormat="" Content= "Sound" FontFamily="Celtic Garamond the 2nd" FontSize="32" FontWeight="Bold" Background="{x:Null}" OpacityMask="Black" OverridesDefaultStyle="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133" BorderThickness="0" MouseEnter="StoryMode_MouseEnter" IsTabStop="False" Margin="-250,212,0,0" Click="SoundToggle_Click" />
             <Button Height="24" HorizontalAlignment="Left" x:Name="SoundOn1" Panel.ZIndex="0"  VerticalAlignment="Top" Visibility="Visible" Width="24" Margin="-295,289,0,0" Click="SoundOn1_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/BlueCrystal.png"/>
@@ -537,6 +537,16 @@
             <Button Height="27"  x:Name="SoundOff2" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Hidden" Margin="-270,0,233,361" Width="27" Click="SoundOff2_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/GreyCrystal.png"/>
+                </Button.Background>
+            </Button>
+            <Button Height="39"  x:Name="MusicMuteButton" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Margin="-120,0,85,545" Width="39" Click="MusicMuteButton_Click"  >
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Unmute.png"/>
+                </Button.Background>
+            </Button>
+            <Button Height="39"  x:Name="SoundMuteButton" Panel.ZIndex="0"  VerticalAlignment="Bottom" Visibility="Visible" Margin="-120,0,85,421" Width="39" Click="SoundMuteButton_Click"  >
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Unmute.png"/>
                 </Button.Background>
             </Button>
         </DockPanel>

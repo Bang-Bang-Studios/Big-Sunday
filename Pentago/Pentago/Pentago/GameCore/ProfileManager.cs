@@ -125,14 +125,17 @@ namespace Pentago.GameCore
             return null;
         }
 
-        public void IncrementCampaignLevel(string profileName)
+        public void IncrementCampaignLevel(string profileName, int levelPlay)
         {
             Profile profile = SearchProfile(profileName);
-            int indexOfProfile = _Profiles.IndexOf(profile);
-            if (profile.CampaignProgress < 4)
-                profile.CampaignProgress++;
-            _Profiles[indexOfProfile] = profile;
-            SaveFile();
+            if (profile.CampaignProgress < levelPlay)
+            {
+                int indexOfProfile = _Profiles.IndexOf(profile);
+                if (profile.CampaignProgress < 4)
+                    profile.CampaignProgress++;
+                _Profiles[indexOfProfile] = profile;
+                SaveFile();
+            }
         }
 
         private void SaveFile()
