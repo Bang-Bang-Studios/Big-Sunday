@@ -24,6 +24,7 @@ namespace Pentago.GUI
             InitializeComponent();
             quotes = new Quotes();
             helpImageChange = 1;
+            HelpTextBlock.Text = quotes.Elder;
         }
 
         Quotes quotes;
@@ -36,7 +37,8 @@ namespace Pentago.GUI
             }
             set
             {
-                helpImagecounter = value; quotes.speechCounter = value;
+                helpImagecounter = value; 
+                quotes.speechCounter = value - 1;
             }
         }
 
@@ -44,7 +46,8 @@ namespace Pentago.GUI
         {
             helpImageChange++;
             HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
-            if (helpImageChange > 8)
+            HelpTextBlock.Text = quotes.Elder;
+            if (helpImageChange > 6)
             {
                 HelpRight.Visibility = Visibility.Hidden;
             }
@@ -55,6 +58,7 @@ namespace Pentago.GUI
         {
             helpImageChange--;
             HelpImage.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(new System.Drawing.Bitmap("GUI/Images/Help" + helpImageChange + ".png").GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight((int)HelpImage.Width, (int)HelpImage.Height));
+            HelpTextBlock.Text = quotes.Elder;            
             if (helpImageChange < 2)
             {
                 HelpLeft.Visibility = Visibility.Hidden;

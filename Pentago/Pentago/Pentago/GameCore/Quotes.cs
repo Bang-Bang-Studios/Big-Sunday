@@ -20,6 +20,7 @@ namespace Pentago.GameCore
             VikingQuotes = new List<string>();
             VikingNames = new List<string>();
             ElderQuotes = new List<string>();
+            IceGiantQuotes = new List<string>();
 
             Create();
         }
@@ -30,17 +31,13 @@ namespace Pentago.GameCore
             CreateLoadingQuotes();
             CreateVikingNames();
             CreateElderQuotes();
+            CreateIceGiantQuotes();
         }
 
         public string Viking
         {
             get
             {
-                //speechCounter++;
-                //if (speechCounter > VikingQuotes.Count() - 1)
-                //{
-                //    speechCounter = 0;
-                //}
                 Random rand = new Random();
                 return VikingQuotes[rand.Next(VikingQuotes.Count - 1)];
             }
@@ -69,6 +66,15 @@ namespace Pentago.GameCore
             get
             {
                 return ElderQuotes[speechCounter];
+            }
+        }
+
+        public string IceGiant
+        {
+            get
+            {
+                Random rand = new Random();
+                return IceGiantQuotes[rand.Next(IceGiantQuotes.Count - 1)];
             }
         }
 
@@ -115,14 +121,13 @@ namespace Pentago.GameCore
 
         private void CreateElderQuotes()
         {
-            ElderQuotes.Add("This is test #1");
-            ElderQuotes.Add("This is test #2");
-            ElderQuotes.Add("This is test #3");
-            ElderQuotes.Add("This is test #4");
-            ElderQuotes.Add("This is test #5");
-            ElderQuotes.Add("This is test #6");
-            ElderQuotes.Add("This is test #7");
-            ElderQuotes.Add("This is test #8");
+            ElderQuotes.Add("Hi! I am the village elder and I can help you fight the ice giants. Your turn has two parts, placing a dragon and using an arrow to rotate a part of the battlefield.");
+            ElderQuotes.Add("Then your opponent will do the same. The Battlefield is split into four parts. The goal of the game is to get five dragons in a row to over power your opponent.");
+            ElderQuotes.Add("Diagonal moves can be very strong attacks but the viking was too obvious here and was blocked by the ice giant. No matter how that quadrant is rotated that move is blocked.");
+            ElderQuotes.Add("A few moves later the ice giant has set up a sneaky attack but spins the battlefield too soon giving the viking a chance to defend the final attack.");
+            ElderQuotes.Add("A few moves later the ice giant has set up a sneaky attack but spins the battlefield too soon giving the viking a chance to defend the final attack.");
+            ElderQuotes.Add("It looks like the ice giant has block another attack from the viking but he forgot about battlefield rotations! the viking can rotate the bottom right board to unblock a victorious attack.");
+            ElderQuotes.Add("Our viking friend has won! Remember to always look at the battlefield rotations or this might happen to you.");
         }
 
         private void CreateIceGiantQuotes()

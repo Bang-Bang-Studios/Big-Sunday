@@ -163,7 +163,6 @@ namespace Pentago.GUI
             this.Cursor = new Cursor(cur);
 
             InitializeDragonOrigins();
-            MakeDragonsVisble();
         }
 
         private void SetUpCampaign(int levelPlay)
@@ -311,6 +310,7 @@ namespace Pentago.GUI
                         fireDragon = true;
                         currentDragon = fireDragonEntryImages[row];
                         currentDragon.RenderTransform = translate;
+                        currentDragon.Visibility = Visibility.Visible;
                         enter = new DoubleAnimation(0, GetFireAnimationDestination(element, targetPoint), TimeSpan.FromSeconds(1));
                         //rec.Fill = player1.Image;
                     }
@@ -319,6 +319,7 @@ namespace Pentago.GUI
                         fireDragon = false;
                         currentDragon = iceDragonEntryImages[row];
                         currentDragon.RenderTransform = translate;
+                        currentDragon.Visibility = Visibility.Visible;
                         enter = new DoubleAnimation(0, -GetIceAnimationDestination(element), TimeSpan.FromSeconds(1));
                         //rec.Fill = player2.Image;
                     }
@@ -331,32 +332,6 @@ namespace Pentago.GUI
                     ShowWinner(winner);
             }
 
-        }
-
-        private void MakeDragonsVisble()
-        {
-            foreach (Image dragon in fireDragonEntryImages)
-            {
-                dragon.Visibility = Visibility.Visible;
-            }
-
-            foreach (Image dragon in iceDragonEntryImages)
-            {
-                dragon.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void MakeDragonsVisble(object sender, EventArgs e)
-        {
-            foreach ( Image dragon in fireDragonEntryImages)
-            {
-                dragon.Visibility = Visibility.Visible;
-            }
-
-            foreach (Image dragon in iceDragonEntryImages)
-            {
-                dragon.Visibility = Visibility.Visible;
-            }
         }
 
         private void ReturnDragon()
@@ -375,7 +350,6 @@ namespace Pentago.GUI
             {
                 exit = new DoubleAnimation(0, GetIceAnimationDestination(element), TimeSpan.FromSeconds(1));
             }
-            exit.Completed += new EventHandler(MakeDragonsVisble);
 
             exit.BeginAnimation(TranslateTransform.XProperty, exit);
         }
@@ -732,6 +706,7 @@ namespace Pentago.GUI
                         fireDragon = true;
                         currentDragon = fireDragonEntryImages[row];
                         currentDragon.RenderTransform = translate;
+                        currentDragon.Visibility = Visibility.Visible;
                         enter = new DoubleAnimation(0, GetFireAnimationDestination(element, targetPoint), TimeSpan.FromSeconds(1));
                     }
                     else
@@ -740,6 +715,7 @@ namespace Pentago.GUI
                         int computerRow = gameBrain.GetComputerMove() / 6;
                         currentDragon = iceDragonEntryImages[computerRow];
                         currentDragon.RenderTransform = translate;
+                        currentDragon.Visibility = Visibility.Visible;
                         enter = new DoubleAnimation(0, -GetIceAnimationDestination(element), TimeSpan.FromSeconds(1));
                     }
                     enter.Completed += new EventHandler(OnAnimationEnterComputerCompletition);

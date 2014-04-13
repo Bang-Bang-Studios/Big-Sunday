@@ -9,9 +9,11 @@
 
     <!--<Page.Resources>
 
-        --><!--<Storyboard x:Key="FadeOut" Completed="VikingButton_Mousedown">
+        -->
+    <!--<Storyboard x:Key="FadeOut" Completed="VikingButton_Mousedown">
             <DoubleAnimation From="1" To="0" Storyboard.TargetName ="SpeechBubble" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="0:0:1"/>
-        </Storyboard>--><!--
+        </Storyboard>-->
+    <!--
 
         <Style x:Key="ScrollFade" TargetType="{x:Type Image}">
             <Style.Triggers>
@@ -431,12 +433,14 @@
             <Image Margin="3,0"/>
         </StackPanel>
         <Button x:Name="VikingButton_Sword" Content="" HorizontalAlignment="Left" Height="293" Margin="167,0,0,127" VerticalAlignment="Bottom" Width="199" Panel.ZIndex="-1" Click="VikingButton_Click" Grid.Row="1">
-            --><!--<Button.Triggers>
+            -->
+    <!--<Button.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="sword.Effect" Value="{StaticResource ShadowEffect}" />
                 </Trigger>
             </Button.Triggers>-->
-            <!--<Setter Property="Effect" Value="{StaticResource ShadowEffect}" />--><!--
+    <!--<Setter Property="Effect" Value="{StaticResource ShadowEffect}" />-->
+    <!--
             <Button.Background>
                 <ImageBrush x:Name="sword" ImageSource="Images/PointSword.png"/>
             </Button.Background>
@@ -856,7 +860,7 @@
                 <ImageBrush ImageSource="Images/Armless.png"/>
             </Button.Background>
         </Button>
-        <StackPanel Name="fireDragonsStackPanel" Margin="-90,189,1449,191" Grid.Row="1">
+        <StackPanel Name="fireDragonsStackPanel" Height="500" Margin="-90,189,1449,191" Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Image}" >
                     <Setter Property="Margin" Value="0,0,0,0" />
@@ -866,7 +870,7 @@
                     <Setter Property="Width" Value="83" />
                     <Setter Property="Source" Value="pack://application:,,,/GUI/images/RedPup.png" />
                     <Setter Property="Panel.ZIndex" Value="-2" />
-                    <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="Visibility" Value="Hidden" />
                 </Style>
             </StackPanel.Resources>
             <Image Margin="-1,0"/>
@@ -876,7 +880,7 @@
             <Image Margin="-1,0"/>
             <Image Margin="-1,0"/>
         </StackPanel>
-        <StackPanel Name="iceDragonsStackPanel" Margin="1440,189,-90,191" Grid.Row="1">
+        <StackPanel Name="iceDragonsStackPanel" Height="500" Margin="1440,189,-90,191" Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Image}" >
                     <Setter Property="Margin" Value="0,0,0,0" />
@@ -886,7 +890,7 @@
                     <Setter Property="Width" Value="83" />
                     <Setter Property="Source" Value="pack://application:,,,/GUI/images/BluePup.png" />
                     <Setter Property="Panel.ZIndex" Value="-2" />
-                    <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="Visibility" Value="Hidden" />
                 </Style>
             </StackPanel.Resources>
             <Image Margin="3,0"/>
@@ -928,8 +932,8 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="SpeechBubble_Copy" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Visible" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
-        <TextBlock HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18"/>
+        <Image HorizontalAlignment="Right" Margin="0,0,246,585" x:Name="SpeechBubble_Copy" Stretch="Fill" Width="207"  Opacity="1" Panel.ZIndex="-10" Source="Images/SpeechBubble.png" Visibility="Hidden" Height="184" VerticalAlignment="Bottom" Grid.Row="1" />
+        <TextBlock Name="IceGiantSpeechBubble" HorizontalAlignment="Right" Height="76" Margin="0,0,273,654" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="148" FontFamily="/Pentago;component/#Celtic Garamond the 2nd" FontSize="18" Visibility="Hidden"/>
     </Grid>
     <Page.Background>
         <ImageBrush ImageSource="/Pentago;component/GUI/Images/Main Background.png" />
